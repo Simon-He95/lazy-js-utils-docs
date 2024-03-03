@@ -1,0 +1,36 @@
+---
+title: 欢迎来到 lazy-js-utils
+description: lazy-js-utils 是一个工具库函数，提供了大量常用的功能和方法的集合。
+template: splash
+hero:
+  tagline: lazy-js-utils 是一个工具库函数，提供了大量常用的功能和方法的集合。
+  image:
+    file: ../../../assets/houston.webp
+  actions:
+    - text: 开始使用
+      link: /guides/start/
+      icon: right-arrow
+      variant: primary
+    - text: 在 GitHub 上查看
+      icon: external
+      link: https://github.com/Simon-He95/lazy-js-utils-docs
+---
+
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+
+<CardGrid stagger>
+	<Card title="反馈" icon="information">
+		提供一些好的[建议](https://github.com/Simon-He95/lazy-js-utils-docs/issues) ，或者反馈一些[问题](https://github.com/Simon-He95/lazy-js-utils-docs/issues)。
+	</Card>
+	<Card title="亮点" icon="seti:smarty">
+		1. 纯 js 的工具函数,可使用在任何可执行 js 的环境 2. 自动清除副作用 3. api 设计简单、实用、类型友好，将一些副作用函数的清除作为返回值
+	</Card>
+	<Card title="覆盖场景多" icon="rocket">
+		1. 有node环境和浏览器环境的api 2. 考虑一些特殊的场景 3. 会结合业务相关的处理
+	</Card>
+  <Card title="赞助" icon="seti:gulp">
+		[请我喝一杯 ☕️](https://github.com/Simon-He95/sponsor)
+	</Card>
+</CardGrid>
