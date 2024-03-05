@@ -5,10 +5,10 @@ description: Quick Start
 
 ## Install
 ```
-npm i @vscode-use/utils -d
+npm i lazy-js-utils -d
 ```
 
 ## Usage
 ```
-import {...} from '@vscode-use'
+import {...} from 'lazy-js-utils'
 ```

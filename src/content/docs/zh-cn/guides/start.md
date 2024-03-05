@@ -5,10 +5,10 @@ description: 快速上手
 
 ## 安装
 ```
-npm i @vscode-use/utils -d
+npm i lazy-js-utils -d
 ```
 
 ## 导入
 ```
-import {...} from '@vscode-use'
+import {...} from 'lazy-js-utils'
 ```

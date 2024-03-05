@@ -17,6 +17,14 @@ hero:
 ---
 
 
+## 动机
+
+在开发中, 我们往往伴随很多重复的劳动, 甚至有一些不熟的,我们还需要借助百度去查, 再通过方式引入和 api 文档如何调用, 会消耗很多时间和精力。
+
+这个库提供了大量的常用函数, 帮助我们快速开发, 并且设计的调用方式更加简洁, 更具有扩展性, 甚至对于一些 dom 操作 api, 我们完全可以直接去调用, 内部自会在 dom 能拿到的时候自动调用, 而不用额外去做一些 load 判断 dom 是否存在的条件判断, 这样我们就可以更加简洁的使用了, 因为很多的逻辑判断都不会出现在你的代码中, 你的代码结果会显得特别清晰简洁。
+
+另一方面, 我们也节约了大量百度去查看不同库的 api 调用引入, 在这个库中就基本满足了你极大的需求,希望给开发者带来更多的方便。
+
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
 
@@ -25,10 +33,14 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 		提供一些好的[建议](https://github.com/Simon-He95/lazy-js-utils-docs/issues) ，或者反馈一些[问题](https://github.com/Simon-He95/lazy-js-utils-docs/issues)。
 	</Card>
 	<Card title="亮点" icon="seti:smarty">
-		1. 纯 js 的工具函数,可使用在任何可执行 js 的环境 2. 自动清除副作用 3. api 设计简单、实用、类型友好，将一些副作用函数的清除作为返回值
+		1. 纯 js 的工具函数,可使用在任何可执行 js 的环境 
+    2. 自动清除副作用 
+    3. api 设计简单、实用、类型友好，将一些副作用函数的清除作为返回值
 	</Card>
 	<Card title="覆盖场景多" icon="rocket">
-		1. 有node环境和浏览器环境的api 2. 考虑一些特殊的场景 3. 会结合业务相关的处理
+		1. 有node环境和浏览器环境的api 
+    2. 考虑一些特殊的场景 
+    3. 会结合业务相关的处理
 	</Card>
   <Card title="赞助" icon="seti:gulp">
 		[请我喝一杯 ☕️](https://github.com/Simon-He95/sponsor)
