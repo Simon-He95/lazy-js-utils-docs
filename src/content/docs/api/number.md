@@ -5,57 +5,76 @@ description: Number
 
 ## calNum
 
-计算数字
+add 数字求和
+EN: Helper for basic arithmetic operations that mitigates
 
-```typescript
+```ts
 /**
- * @func calNum
- * @desc 📝 计算数字
- * @param { ...number } n 数字
- * @return { string } 数字
- * @example
-  import { calNum } from 'lazy-js-utils'
-
-  console.log(calNum.add(0.1, 0.2, 0.2)) // 0.5
-  console.log(calNum.div(0.1, 0.2, 0.2)) // 2.5
-  console.log(calNum.sub(0.1, 0.2, 0.2)) // -0.3
-  console.log(calNum.mul(0.1, 0.2, 0.2)) // 0.004
+ * add 数字求和
+ * sub 数字求差
+ * mul 数字相乘
+ * div 数字相除
+ * @description EN: Helper for basic arithmetic operations that mitigates
+ * floating-point rounding errors by scaling operands. Provides add, sub,
+ * mul and div methods accepting numbers or numeric strings.
  */
 ```
 
 ## formateNum
 
-将数字格式化
+数字格式化
+EN: Format a number with thousands separators and a fixed number of decimal places. Supports rounding via 'floor' or 'ceil'.
 
-```typescript
+```ts
 /**
- * @func formateNum
- * @desc 📝 将数字格式化
- * @param { number } num 数字
- * @param { number } decimals 小数位数, 默认为2
- * @param {  'floor' | 'ceil' } integer 小数截取方式 floor:向下取整 ceil:向上取整
- * @return { string } 中文
- * @example 
-  import { formateNum } from 'lazy-js-utils'
-
-  formateNum(number: number | string, decimals = 2, integer: 'floor' | 'ceil' = 'ceil') => string
-  console.log(formateNum(12253.123, 2)) // '12,253.12'
+ * 数字格式化
+ * @param { number } number 数字
+ * @param { number } decimals 小数位
+ * @param { 'floor' | 'ceil' } integer 向上截取 ｜ 向下截取 默认 'ceil'
+ * @returns
+ * @description EN: Format a number with thousands separators and a fixed number of decimal places. Supports rounding via 'floor' or 'ceil'.
  */
 ```
 
 ## uppercaseNum
 
-将数字转换为大写字母
+大写数字
+EN: Convert a number to Chinese uppercase currency representation (e.g., 壹贰叁元...).
 
-```typescript
+```ts
 /**
- * @func uppercaseNum
- * @desc 📝 将数字转换为大写字母
- * @param { number } number  数字
- * @example
-  import { uppercaseNum } from 'lazy-js-utils'
+ * 大写数字
+ * @param { number } n 数字
+ * @returns 返回大写数字
+ * @description EN: Convert a number to Chinese uppercase currency representation (e.g., 壹贰叁元...).
+ */
+```
 
-  uppercaseNum(num: number | string) => string
-  console.log(uppercaseNum(1)) // '一'
+## multiply
+
+乘倍
+EN: Multiply numeric inputs or repeat strings `multiple` times. If `i` is numeric, returns numeric product; otherwise repeats string.
+
+```ts
+/**
+ * 乘倍
+ * @param { number | string } i
+ * @param { number } multiple 倍数
+ * @returns
+ * @description EN: Multiply numeric inputs or repeat strings `multiple` times. If `i` is numeric, returns numeric product; otherwise repeats string.
+ */
+```
+
+## isEven
+
+判断偶数
+EN: Return true if `n` is an even integer (coerced to number).
+
+```ts
+/**
+ * 判断偶数
+ * @param { number } n 数字
+ * @returns
+ * @description EN: Return true if `n` is an even integer (coerced to number).
  */
 ```

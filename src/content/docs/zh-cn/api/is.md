@@ -3,858 +3,902 @@ title: Is
 description: Is
 ---
 
-## isRelative
-
-🧿 判断是否是相对路径
-
-```typescript
-/**
- * @func isReg
- * @param { string } rootPath 路径
- * @return { boolean }
- * @desc 📝 判断是否是相对路径
- * @example
-  import { isRelative } from 'lazy-js-utils'
-
-  isRelative('../index.md') // true
-```
-
 ## isAbsolute
 
-🧿 判断是否为绝对路径
+判断是否是绝对路径
+EN: Return true when the provided path looks like an absolute path. Matches Unix absolute paths, Windows drive letters, or leading slashes/backslashes.
 
-```typescript
+```ts
 /**
- * @func isAbsolute
- * @param { string } url 路径
- * @desc 📝 判断是否为绝对路径
- * @return { boolean }
- * @example
-  import { isAbsolute } from 'lazy-js-utils'
-
-  isAbsolute('/foo/bar') // true
+ * 判断是否是绝对路径
+ * @description EN: Return true when the provided path looks like an absolute path. Matches Unix absolute paths, Windows drive letters, or leading slashes/backslashes.
+ * @param {string} url Path or URL string to test.
+ * @returns {boolean} True when the path appears absolute.
  */
 ```
 
 ## isArray
 
-🧿 判断是否为数组
+判断是否是数组
+EN: Alias for Array.isArray.
 
-```typescript
+```ts
 /**
- * @func isArray
- * @param { any } o 判断的对象
- * @desc 📝 判断是否为数组
- * @example
-  import { isArray } from 'lazy-js-utils'
-
-  isArray([1, 2, 3]) // true
+ * 判断是否是数组
+ * @description EN: Alias for Array.isArray.
  */
 ```
 
 ## isBlob
 
-🧿 判断是否为 Blob 对象
+判断是否是blob
+EN: Check whether a value is a Blob object.
 
-```typescript
+```ts
 /**
- * @func isBlob
- * @param { any } o 判断的对象
- * @desc 📝 判断是否为Blob对象
- * @return { boolean }
- * @example
-  import { isBlob } from 'lazy-js-utils'
-
-  isBlob(new Blob()) // true
+ * 判断是否是blob
+ * @description EN: Check whether a value is a Blob object.
+ * @param o - candidate value
+ * @returns boolean
  */
 ```
 
 ## isBool
 
-🧿 判断是否为布尔值
+判断是否是boolean类型
+EN: Check whether a value is a boolean.
 
-```typescript
+```ts
 /**
- * @func isBool
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断是否为布尔值
- * @example
-  import { isBool } from 'lazy-js-utils'
-
-  isBool(true) // true
+ * 判断是否是boolean类型
+ * @description EN: Check whether a value is a boolean.
+ * @param value - candidate value
+ * @returns boolean
+ */
 ```
 
 ## isBottom
 
-🧿 判断是否为浏览器底部
+Determine whether the document is scrolled to the bottom (within `distance`).
+EN: Returns true when the document scroll position is at or near the bottom.
 
-```typescript
+```ts
 /**
- * @func isBottom
- * @param { number } distance 距离底部的距离
- * @return { boolean }
- * @desc 📝 判断是否为浏览器底部
- * @example
-  import { isBottom } from 'lazy-js-utils'
-
-  isBottom() // true or false 是否触底
-  isBottom(100) // true or false 是否到达底部100px的距离
+ * Determine whether the document is scrolled to the bottom (within `distance`).
+ * @description EN: Returns true when the document scroll position is at or near the bottom.
+ * @param {number} [distance] Additional threshold in pixels.
+ * @returns {boolean}
+ */
 ```
 
 ## isBrowser
 
-🧿 判断是否为浏览器环境
+判断当前环境是否具有浏览器全局（window）
+EN: True in environments where `globalThis.window` is defined (typical browsers).
 
-```typescript
+```ts
 /**
- * @func isBool
- * @return { boolean }
- * @desc 📝 判断是否为浏览器环境
- * @example
-  import { isBrowser } from 'lazy-js-utils'
-
-  isBrowser() // true | false
+ * 判断当前环境是否具有浏览器全局（window）
+ * @description EN: True in environments where `globalThis.window` is defined (typical browsers).
+ */
 ```
 
 ## isContainCn
 
-🧿 判断字符串中是否含有中文
+判断是否包含中文
+EN: Returns true if the input string contains any CJK Unified Ideographs (Chinese characters).
 
-```typescript
+```ts
 /**
- * @func isContainCn
- * @param { string } str 判断的字符串
- * @return { boolean }
- * @desc 📝 判断字符串中是否含有中文
- * @example
-  import { isContainCn } from 'lazy-js-utils'
-
-  isContainCn('hello world') // false
-  isContainCn('你好，世界') // true
+ * 判断是否包含中文
+ * @description EN: Returns true if the input string contains any CJK Unified Ideographs (Chinese characters).
+ * @param s - input string
+ * @returns boolean
+ */
 ```
 
 ## isDate
 
-🧿 判断是否为日期对象
+判断是否是日期格式
+EN: Check whether a value is a Date instance.
 
-```typescript
+```ts
 /**
- * @func isDate
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断字符串中是否含有中文
- * @example
-  import { isDate } from 'lazy-js-utils'
-
-  isDate(new Date()) // true
+ * 判断是否是日期格式
+ * @description EN: Check whether a value is a Date instance.
+ * @param d - candidate value
+ * @returns boolean
+ */
 ```
 
 ## isDef
 
-🧿 判断是否不为 undefined
+判断元素不是undefined
+EN: Determine whether a value is defined (not undefined).
 
-```typescript
+```ts
 /**
- * @func isDef
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断字符串中是否含有中文
- * @example
-  import { isDef } from 'lazy-js-utils'
-
-  isDef(undefined) // false
-```
-
-## isUndef
-
-🧿 判断是否为 undefined
-
-```typescript
-/**
- * @func isUndef
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断是否为undefined
- * @example
-  import { isUndef } from 'lazy-js-utils'
-
-  isDef(undefined) // true
+ * 判断元素不是undefined
+ * @description EN: Determine whether a value is defined (not undefined).
+ * @param v - candidate value
+ * @returns boolean
+ */
 ```
 
 ## isElement
 
-🧿 判断是否为 DOM 元素
+判断元素是HTMLElement
+EN: Check whether a value is an HTMLElement.
 
-```typescript
+```ts
 /**
- * @func isElement
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断是否为DOM元素
- * @example
-  import { isElement } from 'lazy-js-utils'
-
-  isElement(document.body) // true
-```
-
-## isEmail
-
-🧿 判断是否为邮箱
-
-```typescript
-/**
- * @func isEmail
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断是否为邮箱
- * @example
-  import { isEmail } from 'lazy-js-utils'
-
-  isEmail('https://github.com') // false
+ * 判断元素是HTMLElement
+ * @description EN: Check whether a value is an HTMLElement.
+ * @param element - candidate value
+ * @returns boolean
+ */
 ```
 
 ## isEqual
 
-🧿 判断是否相等
+深度比较两个值是否相等
+EN: Deep equality check for plain objects and arrays.
 
-```typescript
+```ts
 /**
- * @func isEqual
- * @param { any } o1 判断的对象1
- * @param { any } o2 判断的对象2
- * @return { boolean }
- * @desc 📝 判断是否相等
- * @example
-  import { isEqual } from 'lazy-js-utils'
-
-  isEqual(1, 1) // true
-  isEqual(1, 2) // false
-  isEqual([1, 2], [1, 2]) // true
+ * 深度比较两个值是否相等
+ * @description EN: Deep equality check for plain objects and arrays.
+ * @param {any} o1 First value.
+ * @param {any} o2 Second value.
+ * @returns {boolean} True when values are deeply equal.
+ */
 ```
 
-## isEsModule
+## isESModule
 
-🧿 判断是否为 ES 模块
+判断对象是ESModule
+EN: Detect if an object is an ES module (common __esModule or Symbol.toStringTag).
 
-```typescript
+```ts
 /**
- * @func isEsModule
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断是否为ES模块
- * @example
-  import { isEsModule } from 'lazy-js-utils'
-
-  isEsModule({}) // false
-```
-
-## isExist
-
-🧿 判断路径是否存在
-
-```typescript
-/**
- * @func isExist
- * @param { string } url 判断的路径
- * @return { boolean }
- * @desc 📝 判断路径是否存在
- * @example
-  import { isExist } from 'lazy-js-utils'
-
-  isExist('./package.json') // true
+ * 判断对象是ESModule
+ * @description EN: Detect if an object is an ES module (common __esModule or Symbol.toStringTag).
+ * @param obj - candidate object
+ * @returns boolean
+ */
 ```
 
 ## isFalse
 
-🧿 判断是否是 false
+判断是否是false
+EN: Check whether a value is the boolean false.
 
-```typescript
+```ts
 /**
- * @func isFalse
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断是否是false
- * @example
-  import { isFalse } from 'lazy-js-utils'
-
-  isFalse(false) // true
-```
-
-## isTrue
-
-🧿 判断是否是 true
-
-```typescript
-/**
- * @func isTrue
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断是否是true
- * @example
-  import { isTrue } from 'lazy-js-utils'
-
-  isTrue(true) // true
-```
-
-## isFile
-
-🧿 判断是否是文件
-
-```typescript
-/**
- * @func isFile
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断是否是文件
- * @example
-  import { isFile } from 'lazy-js-utils'
-
-  isFile('./package.json') // true
+ * 判断是否是false
+ * @description EN: Check whether a value is the boolean false.
+ * @param v - candidate value
+ * @returns boolean
+ */
 ```
 
 ## isFileType
 
-🧿 判断文件类型
+判断文件类型
+EN: Test if a filename/path has a given extension.
 
-```typescript
+```ts
 /**
- * @func isFileType
- * @param { string } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断文件类型
- * @example
-  import { isFileType } from 'lazy-js-utils'
-
-  // const isCss = isFileType('./useEventListener.css', 'css') // true
+ * 判断文件类型
+ * @description EN: Test if a filename/path has a given extension.
+ * @param { string } file 文件路径
+ * @param { string } appendix 文件类型
+ * @returns boolean
+ */
 ```
 
 ## isFn
 
-🧿 判断是否是函数
+判断是否是函数
+EN: Check whether a value is a function.
 
-```typescript
+```ts
 /**
- * @func isFn
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断是否是函数
- * @example
-  import { isFn } from 'lazy-js-utils'
-
-  isFn(() => {}) // true
-```
-
-## isGo
-
-🧿 判断当前环境是否是 go
-
-```typescript
-/**
- * @func isGo
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断是否是函数
- * @example
-  import { isGo } from 'lazy-js-utils'
-
-  isGo() // false
-```
-
-## isRust
-
-🧿 判断当前环境是否是 rust
-
-```typescript
-/**
- * @func isRust
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断当前环境是否是rust
- * @example
-  import { isRust } from 'lazy-js-utils'
-
-  isRust() // false
-```
-
-## isIdCard
-
-🧿 判断是否是身份证
-
-```typescript
-/**
- * @func isIdCard
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断是否是身份证
- * @example
-  import { isIdCard } from 'lazy-js-utils'
-
-  isIdCard('asss') // false
+ * 判断是否是函数
+ * @description EN: Check whether a value is a function.
+ * @param o - candidate value
+ * @returns boolean
+ */
 ```
 
 ## isIPv4
 
-🧿 判断是否是 IPv4
+判断是否为 IPv4 地址
+EN: Test whether a string is a valid IPv4 address.
 
-```typescript
+```ts
 /**
- * @func isIPv4
- * @param { string } ip 判断的ip
- * @return { boolean }
- * @desc 📝 判断是否是IPv4
- * @example
-  import { isIPv4 } from 'lazy-js-utils'
-
-  isIPv4('xxx') // false
+ * 判断是否为 IPv4 地址
+ * @description EN: Test whether a string is a valid IPv4 address.
+ * @param {string} ip Candidate IP string.
+ * @returns {boolean}
+ */
 ```
 
 ## isIPv6
 
-🧿 判断是否是 IPv6
+判断是否为 IPv6 地址
+EN: Test whether a string matches common IPv6 patterns.
 
-```typescript
+```ts
 /**
- * @func isIPv6
- * @param { string } ip 判断的ip
- * @return { boolean }
- * @desc 📝 判断是否是IPv6
- * @example
-  import { isIPv6 } from 'lazy-js-utils'
+ * 判断是否为 IPv6 地址
+ * @description EN: Test whether a string matches common IPv6 patterns.
+ * @param {string} ip Candidate IP address.
+ * @returns {boolean}
+ */
+```
 
-  isIPv6('xxx') // false
+## isIdCard
+
+判断是否为身份证号（中国身份证格式的简单校验）
+EN: Heuristic check for Chinese ID card numbers (15 or 18 digits with possible 'X').
+
+```ts
+/**
+ * 判断是否为身份证号（中国身份证格式的简单校验）
+ * @description EN: Heuristic check for Chinese ID card numbers (15 or 18 digits with possible 'X').
+ * @param {string} s Candidate ID string.
+ * @returns {boolean}
+ */
 ```
 
 ## isLeapYear
 
-🧿 判断某一年是否是闰年
+判断是否为闰年
+EN: Returns true for leap years (divisible by 400 or divisible by 4 and not by 100).
 
-```typescript
+```ts
 /**
- * @func isLeapYear
- * @param { number } year 判断的年份
- * @return { boolean }
- * @desc 📝 判断某一年是否是闰年
- * @example
-  import { isLeapYear } from 'lazy-js-utils'
-
-  isLeapYear(2020) // true
+ * 判断是否为闰年
+ * @description EN: Returns true for leap years (divisible by 400 or divisible by 4 and not by 100).
+ * @param {number} year Year number.
+ * @returns {boolean}
+ */
 ```
 
 ## isMap
 
-🧿 判断是否是 Map
+判断是否是 Map
+EN: Check whether a value is a Map instance.
 
-```typescript
+```ts
 /**
- * @func isMap
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断是否是Map
- * @example
-  import { isMap } from 'lazy-js-utils'
-
-  isMap(new Map) // true
+ * 判断是否是 Map
+ * @description EN: Check whether a value is a Map instance.
+ * @param {any} o Candidate value.
+ * @returns {o is Map<any, any>} True if the internal [[Class]] is 'Map'.
+ */
 ```
 
 ## isMobile
 
-🧿 判断是否是手机号
+判断是否是手机号
+EN: Check whether a string looks like a mobile phone number (China-focused pattern).
 
-```typescript
+```ts
 /**
- * @func isisMobileMap
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断是否是手机号
- * @example
-  import { isMobile } from 'lazy-js-utils'
-
-  isMobile('13122211332') // true
+ * 判断是否是手机号
+ * @description EN: Check whether a string looks like a mobile phone number (China-focused pattern).
+ * @param s - phone number string
+ * @returns boolean
+ */
 ```
 
 ## isNaN
 
-🧿 判断是否是 NaN
+判断是否为 NaN
+EN: Wraps Number.isNaN for a consistent helper.
 
-```typescript
+```ts
 /**
- * @func isNaN
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断是否是NaN
- * @example
-  import { isNaN } from 'lazy-js-utils'
-
-  isNaN(NaN) // true
+ * 判断是否为 NaN
+ * @description EN: Wraps Number.isNaN for a consistent helper.
+ * @param o Candidate value.
+ * @returns {boolean}
+ */
 ```
 
 ## isNil
 
-🧿 判断是否是 null 或者 undefined
+判断是否为 null 或 undefined
+EN: Returns true when the value is strictly null or undefined.
 
-```typescript
+```ts
 /**
- * @func isNil
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断是否是null或者undefined
- * @example
-  import { isNil } from 'lazy-js-utils'
-
-  isNil(null) // true
+ * 判断是否为 null 或 undefined
+ * @description EN: Returns true when the value is strictly null or undefined.
+ * @param {any} value Candidate value.
+ * @returns {value is null | undefined}
+ */
 ```
 
 ## isNull
 
-🧿 判断是否是 null
+判断是否为 null
+EN: Check if a value is strictly `null`.
 
-```typescript
+```ts
 /**
- * @func isNull
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断是否是null
- * @example
-  import { isNull } from 'lazy-js-utils'
-
-  isNull(null) // true
+ * 判断是否为 null
+ * @description EN: Check if a value is strictly `null`.
+ * @param {any} o Candidate value.
+ * @returns {o is null} True when the value is exactly null.
+ */
 ```
 
 ## isNum
 
-🧿 判断是否是数字
+判断是否为数字
+EN: Check whether a value has type 'number'.
 
-```typescript
+```ts
 /**
- * @func isNum
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断是否是数字
- * @example
-  import { isNum } from 'lazy-js-utils'
-
-  isNum(1) // true
+ * 判断是否为数字
+ * @description EN: Check whether a value has type 'number'.
+ * @param {any} o Candidate value.
+ * @returns {o is number}
+ */
 ```
 
 ## isObject
 
-🧿 判断是否是对象
+判断是否为对象类型
+EN: Returns true for values with typeof 'object' (note: arrays/null are objects too).
 
-```typescript
+```ts
 /**
- * @func isObject
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断是否是对象
- * @example
-  import { isObject } from 'lazy-js-utils'
-
-  isObject({}) // true
-  isObject([]) // true
+ * 判断是否为对象类型
+ * @description EN: Returns true for values with typeof 'object' (note: arrays/null are objects too).
+ * @param {any} value Candidate value.
+ * @returns {boolean}
+ */
 ```
 
 ## isPlainObject
 
-🧿 判断是否是{}
+Check whether value is a plain object (i.e. {}).
 
-```typescript
+```ts
 /**
- * @func isPlainObject
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断是否是{}
- * @example
-  import { isPlainObject } from 'lazy-js-utils'
-
-  isPlainObject({}) // true
-  isObject([]) // false
-```
-
-## isPkg
-
-🧿 判断是否是路径下是否有 package.json
-
-```typescript
-/**
- * @func isPkg
- * @param { string } rootPath 路径
- * @return { boolean }
- * @desc 📝 判断是否是路径下是否有package.json
- * @example
-  import { isPkg } from 'lazy-js-utils'
-
-  isPkg() // true
+ * Check whether value is a plain object (i.e. {}).
+ *
+ * @param {any} o Candidate value.
+ * @returns {o is Record<any, any>} True when `o` is a plain object.
+ */
 ```
 
 ## isPostCode
 
-🧿 判断是否是邮编
+判断是否为邮政编码
+EN: Simplified check for a 6-digit postal code (China-style).
 
-```typescript
+```ts
 /**
- * @func isPostCode
- * @param { string } rootPath 路径
- * @return { boolean }
- * @desc 📝 判断是否是邮编.json
- * @example
-  import { isPostCode } from 'lazy-js-utils'
-
-  isPostCode(200512) // true
+ * 判断是否为邮政编码
+ * @description EN: Simplified check for a 6-digit postal code (China-style).
+ * @param {string|number} s Candidate value.
+ * @returns {boolean}
+ */
 ```
 
 ## isPromise
 
-🧿 判断是否是 Promise
+判断是否为 Promise
+EN: Check whether a value is a Promise instance.
 
-```typescript
+```ts
 /**
- * @func isPromise
- * @param { string } rootPath 路径
- * @return { boolean }
- * @desc 📝 判断是否是Promise
- * @example
-  import { isPromise } from 'lazy-js-utils'
-
-  isPromise(new Promise()) // true
-```
-
-## isPromise
-
-🧿 判断是否是 Promise
-
-```typescript
-/**
- * @func isPromise
- * @param { string } rootPath 路径
- * @return { boolean }
- * @desc 📝 判断是否是Promise
- * @example
-  import { isPromise } from 'lazy-js-utils'
-
-  isPromise(new Promise()) // true
-```
-
-## isNm
-
-🧿 判断是否是 nodemodules 依赖
-
-```typescript
-/**
- * @func isNm
- * @param { string } rootPath 路径
- * @return { boolean }
- * @desc 📝 判断是否是nodemodules依赖
- * @example
-  import { isNm } from 'lazy-js-utils'
-
-  isNm('lazy-js-utils') // true
+ * 判断是否为 Promise
+ * @description EN: Check whether a value is a Promise instance.
+ * @param {any} o Candidate value.
+ * @returns {o is Promise<any>}
+ */
 ```
 
 ## isReg
 
-🧿 判断是否是正则
+判断是否是正则
+EN: Check whether a value is a RegExp instance.
 
-```typescript
+```ts
 /**
- * @func isReg
- * @param { string } rootPath 路径
- * @return { boolean }
- * @desc 📝 判断是否是正则
- * @example
-  import { isReg } from 'lazy-js-utils'
+ * 判断是否是正则
+ * @description EN: Check whether a value is a RegExp instance.
+ * @param o Candidate value.
+ * @returns {o is RegExp} True when the value is a regular expression.
+ */
+```
 
-  isReg(/a/) // true
+## isRelative
+
+判断路径是否为相对路径
+EN: Returns true for strings starting with './' or '../'.
+
+```ts
+/**
+ * 判断路径是否为相对路径
+ * @description EN: Returns true for strings starting with './' or '../'.
+ * @param {string} str Path string.
+ * @returns {boolean}
+ */
 ```
 
 ## isSameDay
 
-🧿 判断是否是同一天
+判断两个日期是否为同一天
+EN: Compares year, month and date to determine whether two Date
 
-```typescript
+```ts
 /**
- * @func isSameDay
- * @param { Date } date1 日期1
- * @param { Date } date2 日期2
- * @return { boolean }
- * @desc 📝 判断是否是同一天
- * @example
-  import { isSameDay } from 'lazy-js-utils'
-
-  isSameDay(new Date(), new Date()) // true
+ * 判断两个日期是否为同一天
+ * @description EN: Compares year, month and date to determine whether two Date
+ * objects represent the same calendar day.
+ * @param {Date} dateLeft First date.
+ * @param {Date} dateRight Second date.
+ * @returns {boolean}
+ */
 ```
 
 ## isSet
 
-🧿 判断是否是 Set
+判断是否为 Set
+EN: Check whether a value is a Set instance.
 
-```typescript
+```ts
 /**
- * @func isSet
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断是否是Set
- * @example
-  import { isSet } from 'lazy-js-utils'
-
-  isSet(new Set) // true
+ * 判断是否为 Set
+ * @description EN: Check whether a value is a Set instance.
+ * @param {any} o Candidate value.
+ * @returns {o is Set<any>} True when the internal [[Class]] is 'Set'.
+ */
 ```
 
 ## isStr
 
-🧿 判断是否是字符串
+判断是否为字符串
+EN: Check whether a value has type 'string'.
 
-```typescript
+```ts
 /**
- * @func isStr
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断是否是字符串
- * @example
-  import { isStr } from 'lazy-js-utils'
-
-  isStr('hi') // true
+ * 判断是否为字符串
+ * @description EN: Check whether a value has type 'string'.
+ * @param {any} o Candidate value.
+ * @returns {o is string}
+ */
 ```
 
 ## isSupportCamera
 
-🧿 判断是否支持摄像头
+判断当前环境是否支持摄像头采集（getUserMedia）
+EN: Heuristic detection for getUserMedia support across legacy vendor prefixes.
 
-```typescript
+```ts
 /**
- * @func isSupportCamera
- * @return { boolean }
- * @desc 📝 判断是否支持摄像头
- * @example
-  import { isSupportCamera } from 'lazy-js-utils'
-
-  isSupportCamera() // true
+ * 判断当前环境是否支持摄像头采集（getUserMedia）
+ * @description EN: Heuristic detection for getUserMedia support across legacy vendor prefixes.
+ * @returns {boolean}
+ */
 ```
 
 ## isSupportWebp
 
-🧿 判断是否支持 webp
+判断当前浏览器是否支持 WebP
+EN: Returns true when the current browser can encode a WebP
 
-```typescript
+```ts
 /**
- * @func isSupportWebp
- * @return { boolean }
- * @desc 📝 判断是否支持摄像头
- * @example
-  import { isSupportWebp } from 'lazy-js-utils'
-
-  isSupportWebp() // true
+ * 判断当前浏览器是否支持 WebP
+ * @description EN: Returns true when the current browser can encode a WebP
+ * data URL from a canvas (a common heuristic for WebP support).
+ * @returns {boolean}
+ */
 ```
 
 ## isSymbol
 
-🧿 判断是否是 Symbol
+判断是否为 symbol
+EN: Check whether a value has type 'symbol'.
 
-```typescript
+```ts
 /**
- * @func isSymbol
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断是否是Symbol
- * @example
-  import { isSymbol } from 'lazy-js-utils'
+ * 判断是否为 symbol
+ * @description EN: Check whether a value has type 'symbol'.
+ * @param {any} o Candidate value.
+ * @returns {o is symbol}
+ */
+```
 
-  isSymbol(symbol('xx')) // true
+## isTrue
+
+判断是否是true
+EN: Check whether a value is the boolean literal true.
+
+```ts
+/**
+ * 判断是否是true
+/**
+ * \u5224\u65ad\u662f\u5426\u662ftrue
+ * @description EN: Check whether a value is the boolean literal true.
+ * @param v - candidate value
+ * @returns v is true
+ */
 ```
 
 ## isType
 
-🧿 判断是否是???类型
+判断值是否匹配指定的类型标签
+EN: Flexible type checker that accepts a shorthand type string
 
-```typescript
+```ts
 /**
- * @func isType
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断是否是???类型
- * @example
-  import { isType } from 'lazy-js-utils'
+ * 判断值是否匹配指定的类型标签
+ * @description EN: Flexible type checker that accepts a shorthand type string
+ * (like 'str', 'array', 'map') or multiple types separated by '|'. The
+ * implementation delegates to specific `isX` helpers.
+ * @param s Candidate value to test.
+ * @param type Type label or pipe-separated labels.
+ * @returns boolean True when any of the provided type labels match.
+ */
+```
 
-  // 判断是否是对象{}或者number类型
-  isType({},'o|n') // true
+## isUndef
+
+判断是否为 undefined
+EN: Returns true when the value is exactly `undefined`.
+
+```ts
+/**
+ * 判断是否为 undefined
+ * @description EN: Returns true when the value is exactly `undefined`.
+ * @param o Candidate value.
+ * @returns {o is undefined}
+ */
 ```
 
 ## isUrl
 
-🧿 判断是否是 url
+判断是否是 URL
+EN: Simple check whether a string looks like an HTTP/HTTPS URL.
 
-```typescript
+```ts
 /**
- * @func isUrl
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断是否是url
- * @example
-  import { isUrl } from 'lazy-js-utils'
-
-  isUrl('http://www.baidu.com') // true
+ * 判断是否是 URL
+ * @description EN: Simple check whether a string looks like an HTTP/HTTPS URL.
+ * @param {string} url The candidate URL string.
+ * @returns {boolean} True if the string begins with "http://" or "https://".
+ */
 ```
 
 ## isVideo
 
-🧿 判断是否是视频
+判断是否为视频文件（基于扩展名）
+EN: Returns true when the filepath ends with a known video file extension.
 
-```typescript
+```ts
 /**
- * @func isVideo
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断是否是视频
- * @example
-  import { isVideo } from 'lazy-js-utils'
-
-  isVideo('../xxx.mp4') // true
+ * 判断是否为视频文件（基于扩展名）
+ * @description EN: Returns true when the filepath ends with a known video file extension.
+ * @param {string} filepath Path or filename.
+ * @returns {boolean}
+ */
 ```
 
 ## isWeakMap
 
-🧿 判断是否是 WeakMap
+判断是否为 WeakMap
+EN: Check whether a value is a WeakMap instance.
 
-```typescript
+```ts
 /**
- * @func isWeakMap
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断是否是WeakMap
- * @example
-  import { isWeakMap } from 'lazy-js-utils'
-
-  isWeakMap(new WeakMap()) // true
+ * 判断是否为 WeakMap
+ * @description EN: Check whether a value is a WeakMap instance.
+ * @param {any} o Candidate value.
+ * @returns {o is WeakMap<any, any>}
+ */
 ```
 
 ## isWeakSet
 
-🧿 判断是否是 WeakSet
+判断是否为 WeakSet
+EN: Check whether a value is a WeakSet instance.
 
-```typescript
+```ts
 /**
- * @func isWeakSet
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断是否是WeakSet
- * @example
-  import { isWeakSet } from 'lazy-js-utils'
-
-  isWeakSet(new WeakSet()) // true
+ * 判断是否为 WeakSet
+ * @description EN: Check whether a value is a WeakSet instance.
+ * @param {any} o Candidate value.
+ * @returns {o is WeakSet<any>}
+ */
 ```
 
 ## isWin
 
-🧿 判断是否是 windows
+判断是否为 Windows 平台
+EN: Returns true when running on Windows (platform 'win32').
 
-```typescript
+```ts
 /**
- * @func isWin
- * @param { any } o 判断的对象
- * @return { boolean }
- * @desc 📝 判断是否是windows
- * @example
-  import { isWin } from 'lazy-js-utils'
+ * 判断是否为 Windows 平台
+ * @description EN: Returns true when running on Windows (platform 'win32').
+ * @returns {boolean}
+ */
+```
 
-  isWin() // false
+## isSocketUrl
+
+判断是否为 WebSocket URL
+EN: Returns true for URLs that start with ws:// or wss://.
+
+```ts
+/**
+ * 判断是否为 WebSocket URL
+ * @description EN: Returns true for URLs that start with ws:// or wss://.
+ * @param {string} url URL string.
+ * @returns {boolean}
+ */
+```
+
+## isBase64
+
+Check whether a string is a base64 data URL.
+EN: Validate whether a string is a data URL that contains base64-encoded content.
+
+```ts
+/**
+ * Check whether a string is a base64 data URL.
+ *
+ * @description EN: Validate whether a string is a data URL that contains base64-encoded content.
+ * @param {string} base64 Candidate string.
+ * @returns {boolean} True when the string looks like a base64 data URL.
+ */
+```
+
+## isTrainNumber
+
+判断是否为火车车次（简单校验）
+EN: Heuristic check for train numbers using common prefixes and 1-4 digits.
+
+```ts
+/**
+ * 判断是否为火车车次（简单校验）
+ * @description EN: Heuristic check for train numbers using common prefixes and 1-4 digits.
+ * @param {string} s Candidate train number string.
+ * @returns {boolean}
+ */
+```
+
+## isNameCn
+
+判断是否为中文姓名（含·）
+EN: Test whether a string is a Chinese personal name (2-16 CJK chars or middle dot).
+
+```ts
+/**
+ * 判断是否为中文姓名（含·）
+ * @description EN: Test whether a string is a Chinese personal name (2-16 CJK chars or middle dot).
+ * @param {string} s Candidate name string.
+ * @returns {boolean}
+ */
+```
+
+## isNameEn
+
+判断输入是否为英文姓名样式
+EN: Simple heuristic to test for English name-like strings (letters and spaces, 2-22 chars).
+
+```ts
+/**
+ * 判断输入是否为英文姓名样式
+ * @description EN: Simple heuristic to test for English name-like strings (letters and spaces, 2-22 chars).
+ * @param {string} s Candidate string.
+ * @returns {boolean}
+ */
+```
+
+## isSoldierId
+
+判断是否是军官证
+EN: Heuristic check for a soldier/officer ID string. This function uses a simple regex and may not cover all real-world formats; it is intended as a lightweight validator rather than authoritative verification.
+
+```ts
+/**
+ * 判断是否是军官证
+ * @description EN: Heuristic check for a soldier/officer ID string. This function uses a simple regex and may not cover all real-world formats; it is intended as a lightweight validator rather than authoritative verification.
+ * @param {string} s Candidate ID string.
+ * @returns {boolean} True when the string matches the expected pattern.
+ */
+```
+
+## isVersion
+
+判断是否为版本号
+EN: Check whether a version string consists of dot-separated numeric parts.
+
+```ts
+/**
+ * 判断是否为版本号
+ * @description EN: Check whether a version string consists of dot-separated numeric parts.
+ * @param {string} version Version string, e.g. '1.2.3'.
+ * @returns {boolean}
+ */
+```
+
+## isDivElement
+
+判断目标是否为 HTMLDivElement
+EN: Narrow type guard to detect <div> elements.
+
+```ts
+/**
+ * 判断目标是否为 HTMLDivElement
+ * @description EN: Narrow type guard to detect <div> elements.
+ * @param {unknown} target Candidate value.
+ * @returns {target is HTMLDivElement}
+ */
+```
+
+## isIFrameElement
+
+判断目标是否为 HTMLIFrameElement
+EN: Narrow type guard for iframe elements.
+
+```ts
+/**
+ * 判断目标是否为 HTMLIFrameElement
+ * @description EN: Narrow type guard for iframe elements.
+ * @param {unknown} target Candidate value.
+ * @returns {target is HTMLIFrameElement}
+ */
+```
+
+## isImageElement
+
+判断目标是否为 HTMLImageElement
+EN: Narrow type check to determine whether the target is an <img> element.
+
+```ts
+/**
+ * 判断目标是否为 HTMLImageElement
+ * @description EN: Narrow type check to determine whether the target is an <img> element.
+ * @param {unknown} target Candidate value.
+ * @returns {target is HTMLImageElement}
+ */
+```
+
+## isNode
+
+判断目标是否为 DOM Node
+EN: Returns true when the target is a DOM Node or looks like one (has numeric nodeType).
+
+```ts
+/**
+ * 判断目标是否为 DOM Node
+ * @description EN: Returns true when the target is a DOM Node or looks like one (has numeric nodeType).
+ * @param {unknown} target Candidate value.
+ * @returns {target is Node}
+ */
+```
+
+## isProxyDocument
+
+判断目标是否为 ProxyDocument（特定实现的代理文档对象）
+EN: Type guard that tests for an object whose [[Class]] is 'ProxyDocument'.
+
+```ts
+/**
+ * 判断目标是否为 ProxyDocument（特定实现的代理文档对象）
+ * @description EN: Type guard that tests for an object whose [[Class]] is 'ProxyDocument'.
+ * @param {unknown} target Candidate value.
+ * @returns {target is Document}
+ */
+```
+
+## isScriptElement
+
+判断目标是否为 HTMLScriptElement
+EN: Narrow type guard for <script> elements.
+
+```ts
+/**
+ * 判断目标是否为 HTMLScriptElement
+ * @description EN: Narrow type guard for <script> elements.
+ * @param {unknown} target Candidate value.
+ * @returns {target is HTMLScriptElement}
+ */
+```
+
+## isShadowRoot
+
+判断目标是否为 ShadowRoot
+EN: Type guard for ShadowRoot instances (if supported in environment).
+
+```ts
+/**
+ * 判断目标是否为 ShadowRoot
+ * @description EN: Type guard for ShadowRoot instances (if supported in environment).
+ * @param {unknown} target Candidate value.
+ * @returns {target is ShadowRoot}
+ */
+```
+
+## isStyleElement
+
+判断目标是否为 HTMLStyleElement
+EN: Narrow type guard for <style> elements.
+
+```ts
+/**
+ * 判断目标是否为 HTMLStyleElement
+ * @description EN: Narrow type guard for <style> elements.
+ * @param {unknown} target Candidate value.
+ * @returns {target is HTMLStyleElement}
+ */
+```
+
+## isVue
+
+判断文件路径是否是 Vue 单文件组件（.vue）
+EN: Simple check for filenames ending with '.vue'.
+
+```ts
+/**
+ * 判断文件路径是否是 Vue 单文件组件（.vue）
+ * @description EN: Simple check for filenames ending with '.vue'.
+ * @param {string} src Path or filename.
+ * @returns {boolean}
+ */
+```
+
+## isComment
+
+判断是否为 HTML 注释
+EN: Test whether a string looks like an HTML comment (<!-- ... -->).
+
+```ts
+/**
+ * 判断是否为 HTML 注释
+ * @description EN: Test whether a string looks like an HTML comment (<!-- ... -->).
+ * Matches across newlines as well.
+ * @param {string} s Input string.
+ * @returns {boolean}
+ */
+```
+
+## isActive
+
+判断当前页面是否处于活动（未被隐藏）状态
+EN: Returns true when the document is currently visible/active
+
+```ts
+/**
+ * 判断当前页面是否处于活动（未被隐藏）状态
+ * @description EN: Returns true when the document is currently visible/active
+ * (i.e. `document.hidden` is falsy).
+ * @returns {boolean}
+ */
+```
+
+## isFile
+
+判断是否是文件
+EN: Check whether the input is a File (or file path on Node.js).
+
+```ts
+/**
+ * 判断是否是文件
+ * @description EN: Check whether the input is a File (or file path on Node.js).
+ * @param o - Blob, File or string path
+ * @returns boolean
+ */
 ```

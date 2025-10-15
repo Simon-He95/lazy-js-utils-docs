@@ -5,107 +5,73 @@ description: Html
 
 ## escapeHtml
 
-🧿 将字符串转义为 HTML 实体
+转义html
+EN: Escape HTML special characters in a string to their entity equivalents.
 
-```typescript
+```ts
 /**
- * @func escapeHtml
- * @param { string } html 字符串
- * @desc 📝 设置css变量值
- * @return { string } 转义后的字符串
- * @example
-  import { escapeHtml } from 'lazy-js-utils'
-
-  escapeHtml('<div>hello world</div>') // &lt;div&gt;hello world&lt;/div&gt;
- */
-```
-
-## unescapeHtml
-
-🧿 将 HTML 实体转义为字符串
-
-```typescript
-/**
- * @func unescapeHtml
- * @param { string } html HTML实体字符串
- * @desc 📝 获取数组的平均值
- * @return { string } 转义后的字符串
- * @example
-  import { unescapeHtml } from 'lazy-js-utils'
-
-  unescapeHtml('&lt;div&gt;hello world&lt;/div&gt;') // <div>hello world</div>
+ * 转义html
+ * @description EN: Escape HTML special characters in a string to their entity equivalents.
+ * @param { string } s 字符串
+ * @returns
  */
 ```
 
 ## htmlTransform
 
-🧿html 字符串 ast 遍历函数
+htmlparser
+EN: Parse an HTML string into a DOM-like structure, allow transformations via callbacks, and return the transformed HTML string.
 
-```typescript
+```ts
 /**
- * @func htmlTransform
- * @param { string } html html字符串
- * @param { style: string } 样式
- * @param { Record<string, (node: Element, update: Update) => void> } options 参数
- * @desc 📝 html ast遍历函数
- * @example
-  import { htmlTransform } from 'lazy-js-utils'
+ * htmlparser
+ * @description EN: Parse an HTML string into a DOM-like structure, allow transformations via callbacks, and return the transformed HTML string.
+ * @param { string } s 字符串
+ * @param options {}
+ * @param { (key: string, value?: string) => void } options.setAttribs 设置属性
+ * @param { (str: string) => void } options.beforeInsert 插入前
+ * @param { (s: string) => void } options.afterInsert 插入后
+ * @param { (key: string, value?: string) => void } options.renameAttribs 重命名
+ * @returns
+ */
+```
 
-   const code = await htmlTransform('<div class="_ee">hello</div><view bindtap="xx"></view>', {
-      div(node, { setAttribs, beforeInsert, afterInsert }) {
-        node.name = 'p'
-        setAttribs('age', '19')
-        beforeInsert('<span>hi</span>')
-        afterInsert('<span>你好</span>')
-      },
-      '*': function (node) {
-        // 所有的节点都会进入这里
-        console.log(node)
-      },
-      '$attr$_ee': function (node) {
-        // $attr开头会匹配存在_ee属性的节点
-        console.log(node)
-      },
-      '$attr$bindtap': function (node, { renameAttribs }) {
-        renameAttribs('bindtap', 'onTap')
-      },
-    })
+## unescapeHtml
+
+反转义html
+EN: Convert HTML entities back into their corresponding characters.
+
+```ts
+/**
+ * 反转义html
+ * @description EN: Convert HTML entities back into their corresponding characters.
+ * @param { string } s 字符串
+ * @returns
+ */
+```
+
+## stylesReg
+EN: Extract inline style attributes from HTML-like strings and call `callback` with each style and the full matching block.
+
+```ts
+/**
+ *
+ * @param { string } str 字符串模板
+ * @param { Function } callback 读取style时的回调
+ * @returns
+ * @description EN: Extract inline style attributes from HTML-like strings and call `callback` with each style and the full matching block.
  */
 ```
 
 ## getStyles
+EN: Extract inline style attributes from HTML-like strings and call `callback` with each style and the full matching block.
 
-🧿 对 html 中的 style 内联样式进行处理
-
-```typescript
+```ts
 /**
- * @func getStyles
- * @param { string } html html字符串
- * @param { style: string } 样式
- * @param { Record<string, (node: Element, update: Update) => void> } options 参数
- * @desc 📝 html ast遍历函数
- * @example
-  import { getStyles } from 'lazy-js-utils'
-
-  const template = ` <template>
-    <div class="red yellow my-class my_class my$c class1" style="background: yellow;color:red;" >asdas</div>
-    <div class="red yellow my-class my_class my$c class1" style="background: yellow" />
-  </template>
-  <style scoped>
-  .red {
-    color: red;
-    font-size: 14px;
-  }
-  .red .a {
-    color: yellow;
-  }
-  </style>
-  `
-
-  console.log(getStyles(str, (style, block, index) => {
-    console.log(style)
-    return style + 'nihao'
-  }))
-
+ *
+ * @param { string } str 字符串模板
+ * @param { Function } callback 读取style时的回调
+ * @returns
+ * @description EN: Extract inline style attributes from HTML-like strings and call `callback` with each style and the full matching block.
  */
 ```

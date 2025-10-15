@@ -5,49 +5,48 @@ description: Scroll
 
 ## getScrollPosition
 
-🧿 获取滚动条位置
+获取滚动条位置
+EN: Return the current scroll position {x,y} for the given window-like object.
 
-```typescript
+```ts
 /**
- * @func getScrollPosition
- * @param { Element } el 滚动的元素
- * @desc 📝 获取滚动条位置
- * @example
-  import { getScrollPosition } from 'lazy-js-utils'
-
-  const { x, y } = getScrollPosition()
+ * 获取滚动条位置
+ * @param el 默认window
+ * @returns Position
+ * @description EN: Return the current scroll position {x,y} for the given window-like object.
  */
 ```
 
 ## scrollToTop
 
-🧿 平缓滚动到顶部
+滚动到顶部
+EN: Smoothly scroll the document to the top using a requestAnimationFrame loop.
 
-```typescript
+```ts
 /**
- * @func scrollToTop
- * @desc 📝 平缓滚动到顶部
- * @return { () => void } stop 停止滚动
- * @example
-  import { scrollToTop } from 'lazy-js-utils'
-
-  const stop = scrollToTop()
+ * 滚动到顶部
+ * @description EN: Smoothly scroll the document to the top using a requestAnimationFrame loop.
  */
 ```
 
 ## scrollToView
 
-🧿 平缓滚动到指定元素
+滚动到可视区域
+EN: Smoothly scroll the given element or selector into view with optional options.
 
-```typescript
+```ts
 /**
- * @func scrollToView
- * @param { string | Element } el 滚动的元素 
- * @param { ScrollIntoViewOptions } options 滚动的配置 
- * @desc 📝 平缓滚动到指定元素
- * @example
-  import { scrollToView } from 'lazy-js-utils'
-
-  scrollToView('#main')
+ * 滚动到可视区域
+ * @param {  Element | string | null } e 元素
+ * @param { ScrollIntoViewOptions } options {
+ *   block?: ScrollLogicalPosition;
+ *   inline?: ScrollLogicalPosition;
+ * }
+ * @returns void
+ * @description EN: Smoothly scroll the given element or selector into view with optional options.
  */
 ```
+
+## getScrollProgress
+
+_暂无文档注释，欢迎补充。_

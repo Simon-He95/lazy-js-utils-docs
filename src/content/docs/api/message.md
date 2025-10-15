@@ -5,55 +5,57 @@ description: Message
 
 ## createEventBus
 
-🧿 创建一个事件总线, 用于事件的发布和订阅
+eventbus
 
-```typescript
+```ts
 /**
- * @func createEventBus    
- * @desc 📝 创建一个事件总线, 用于事件的发布和订阅
- * @returns { 
- * { 
- *  data: Record<string, Function[]>; 
- *  emit: (event: string, data?: any) => void;
- *  on: (event: string, fn: (data?: any) => void) => void; 
- *  off: (event: string, fn: Function) => void
- *  } 
- * } 
- * @example 
-  import { createEventBus } from 'lazy-js-utils'
-
-  const bus = createEventBus()
-  bus.on('test', (data) => {
-    console.log(data) // hi
-  })
-
-  bus.emit('test','hi')
+ * eventbus
  */
 ```
 
 ## useStorageListen
 
-🧿 新开页, 监听 storage 的变化
+跨标签页通信通过storage事件实现
+EN: Listen to `storage` events for simple cross-tab messaging and provide a helper to send storage messages.
 
-```typescript
+```ts
 /**
- * @func useStorageListen    
- * @desc 📝 新开页, 监听storage的变化
- * @param { (type: string, newValue: any, oldValue: any) => void) } callback 回调函数
- * @returns { () => void } stop 停止监听
- * @example 
-  import { useStorageListen, sendStorage } from 'lazy-js-utils'
-
-  useStorageListen((type, newValue, oldValue) => {
-    if(type === 'add'){
-      // 新增
-      console.log(type, newValue, oldValue)
-    }
-  })
-
-  sendStorage('add', {
-    user: 'simon',
-    auth: 'admin'
-  })
+ *  跨标签页通信通过storage事件实现
+ * @description EN: Listen to `storage` events for simple cross-tab messaging and provide a helper to send storage messages.
+ * @param { (type: string, newValue: any, oldValue: any) => void } callback storage数据更新回调
+ * @returns
  */
 ```
+
+## sendStorage
+
+跨标签页通信通过storage事件实现
+EN: Listen to `storage` events for simple cross-tab messaging and provide a helper to send storage messages.
+
+```ts
+/**
+ *  跨标签页通信通过storage事件实现
+ * @description EN: Listen to `storage` events for simple cross-tab messaging and provide a helper to send storage messages.
+ * @param { (type: string, newValue: any, oldValue: any) => void } callback storage数据更新回调
+ * @returns
+ */
+```
+
+## useSocket
+
+WebSocket helper
+EN: Small wrapper around the browser WebSocket that normalizes the URL and returns helper event attachers.
+
+```ts
+/**
+ * WebSocket helper
+ * @description EN: Small wrapper around the browser WebSocket that normalizes the URL and returns helper event attachers.
+ * @param { string } url 要连接的 URL；这应该是 WebSocket 服务器将响应的 URL。
+ * @param { string | string[] } [protocols] 一个协议字符串或者一个包含协议字符串的数组。
+ * @returns An object with `socket`, `receive`, `send`, `open`, `close`, and `error` helpers.
+ */
+```
+
+## createChannel
+
+_暂无文档注释，欢迎补充。_

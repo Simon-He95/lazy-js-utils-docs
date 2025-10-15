@@ -5,48 +5,47 @@ description: Script
 
 ## addLink
 
-🧿 创建并添加 link 标签
+Add a <link rel="stylesheet"> tag to document head and return a remover.
 
-```typescript
+```ts
 /**
- * @func addLink
- * @param { string } url link标签的href属性 
- * @desc 📝 创建并添加link标签
- * @example
-  import { addLink } from 'lazy-js-utils'
-
-  addLink('https://cdn.bootcdn.net/ajax/libs/normalize/8.0.1/normalize.min.css')
+ * Add a <link rel="stylesheet"> tag to document head and return a remover.
+ *
+ * @param {string} href Stylesheet URL.
+ * @returns {() => void} Function that removes the link element.
  */
 ```
 
 ## addScript
 
-🧿 创建并添加 script 标签
+Add a <script> tag to the document head and return a remover function.
 
-```typescript
+```ts
 /**
- * @func addScript
- * @param { string } url link标签的href属性 
- * @desc 📝 创建并添加script标签
- * @example
-  import { addScript } from 'lazy-js-utils'
-
-  addScript('http://xxxx.jquery.min.js')
+ * Add a <script> tag to the document head and return a remover function.
+ *
+ * @param {string} src Script URL to add to the page.
+ * @returns {() => void} Function that removes the inserted script.
  */
 ```
 
 ## addStyle
 
-🧿 创建并添加 style 标签
+Inject CSS into the document head.
 
-```typescript
+```ts
 /**
- * @func addStyle
- * @param { string } url link标签的href属性 
- * @desc 📝 创建并添加script标签
- * @example
-  import { addStyle } from 'lazy-js-utils'
-
-  addStyle('body{color:red}')
+ * Inject CSS into the document head.
+ *
+ * `s` may be a CSS string or an object of rules. If `scoped` is provided the
+ * style will be transformed to a scoped variant via `addStyleScoped`.
+ *
+ * @param {string|StyleObject} s CSS string or style object.
+ * @param {string} [scoped] Optional scope id to scope the styles.
+ * @returns {() => void} Function to remove the injected style.
  */
 ```
+
+## addStyleScoped
+
+_暂无文档注释，欢迎补充。_

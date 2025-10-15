@@ -5,20 +5,17 @@ description: Waterfall
 
 ## waterfall
 
-🧿 生成一个瀑布流布局
+创建图片瀑布流并挂载到目标容器
+EN: Create a simple waterfall (masonry) layout for images and mount it into the target container. Returns an `append` function to add more images.
 
-```typescript
+```ts
 /**
- * @func waterfall
- * @param { string[] } imageList 图片列表
- * @param { string | HTMLElement } container 容器
- * @param { number } width 图片宽度
- * @param { number } space 图片间距
- * @return { void }
- * @desc 📝 生成一个瀑布流布局
- * @example
-  import { waterfall } from 'lazy-js-utils'
-
-  waterfall(['https://img.alicdn.com/tfs/TB1ZQY9X4D1gK0jSZFsXXbldVXa-1000-1000.png', 'https://img.alicdn.com/tfs/TB1ZQY9X4D1gK0jSZFsXXbldVXa-1000-1000.png'], 'body', 200, 10)
+ * 创建图片瀑布流并挂载到目标容器
+ * @description EN: Create a simple waterfall (masonry) layout for images and mount it into the target container. Returns an `append` function to add more images.
+ * @param { string[] } imageList 图片 URL 列表
+ * @param { MaybeElement | number } target 目标容器或直接传入宽度（当传数字时表示宽度并默认挂载到 body）
+ * @param { number } width 图片显示宽度（像素），默认为 200
+ * @param { number } space 图片间距（像素），默认 20
+ * @returns {(imageList: string[]) => void} 返回一个函数，用于追加更多图片到瀑布流
  */
 ```

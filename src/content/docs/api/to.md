@@ -3,235 +3,239 @@ title: To
 description: To
 ---
 
-## treeToArray
+## arrayToExcel
 
-🧿 将树结构转换为数组
+Convert an array of objects into an Excel-compatible HTML table and
 
-```typescript
+```ts
 /**
- * @func treeToArray
- * @param { Record<string, any> } tree 树结构数据
- * @param { string } children 子节点字段名
- * @return { Array }
- * @desc 📝 将树结构转换为数组
- * @example 
-  import { treeToArray } from 'lazy-js-utils'
-
-  const tree = {
-    id: 1,
-    label: '一级',
-    parent_id: 0,
-    children: [
-      {
-        id: 2,
-        label: '二级',
-        parent_id: 1
-      },
-      {
-        id: 3,
-        label: '二级',
-        parent_id: 1
-      }
-    ]
-  }
-
-  const arr = treeToArray(tree)
-  console.log(arr)
-  // [
-  //   { "id": 1, "parent_id": 0, "label": "一级" },
-  //   { "id": 2, "parent_id": 1, "label": "二级" },
-  //   { "id": 3, "parent_id": 1, "label": "二级" }
-  // ]
+ * Convert an array of objects into an Excel-compatible HTML table and
+ * trigger a download as an .xls file.
+ *
+ * Each item may be a primitive value or an object with display metadata
+ * (value, width, colspan, rowspan, style).
+ *
+ * @param options - Data and output options
  */
 ```
 
 ## arrayToTree
 
-🧿 将树结构转换为数组
+Convert a flat array of records into a tree structure.
 
-```typescript
+```ts
 /**
- * @func arrayToTree
- * @param { Record<string, any>[] } array 数组
- * @param { string | number } rootId  根节点id
- * @param { 
- * { 
- *  id: 'id',
- *  pid: 'pid',
- *  children: 'children'
- * }
- * } options  配置项
- * @return { Array }
- * @desc 📝 将树结构转换为数组
- * @example 
-  import { arrayToTree } from 'lazy-js-utils'
-
-  const arr = [
-    { id: 1, parent_id: 0, label: '一级' },
-    { id: 2, parent_id: 1, label: '二级' },
-    { id: 3, parent_id: 1, label: '二级' },
-  ]
-  console.log(arrayToTree(arr, { pid: 'parent_id' }))
-  // [
-  //   {
-  //     id: 1,
-  //     parent_id: 0,
-  //     label: '一级',
-  //     children: [
-  //       {id: 2, parent_id: 1, label: '二级', children: []},
-  //       {id: 3, parent_id: 1, label: '二级', children: []}
-  //     ]
-  //   }
-  // ]
+ * Convert a flat array of records into a tree structure.
+ *
+ * Example: pass an array with id/pid and this will nest children under the
+ * configured `children` key. `options` can override the id/pid/children
+ * property names.
+ *
+ * @param {Record<string, any>[]} array Source array of records.
+ * @param {number|string} [parentId] Parent id to start building from.
+ * @param {ArrayToTreeOptions} [options] Optional keys configuration.
+ * @returns {Record<string, any>} A tree node (root node is returned).
  */
 ```
 
-## arrayToExcel
+## base64ToBlob
 
-🧿 将数组转换为 excel,并下载
+Convert a base64 data URL to a `Blob`.
 
-```typescript
+```ts
 /**
- * @func arrayToExcel
- * @param {
- * {
- *  data: Record<string, any>[]
- *  filename?: string
- *  title?: string[]
- *  filter?: string[]
- * }
- * } options 配置项
- * @return { void }
- * @desc 📝 将数组转换为excel,并下载
- * @example 
-  import { arrayToExcel } from 'lazy-js-utils'
-
-  const arr = [
-    { id: 1, parent_id: 0, label: '一级' },
-    { id: 2, parent_id: 1, label: '二级' },
-    { id: 3, parent_id: 1, label: '二级' },
-  ]
-  arrayToExcel({
-    data: arr,
-    filename: '测试',
-    title: ['id', 'parent_id', 'label'],
-    filter: ['id', 'parent_id', 'label']
-  })
+ * Convert a base64 data URL to a `Blob`.
+ *
+ * @param {string} s Base64 data URL (e.g. 'data:image/png;base64,...').
+ * @returns {Blob} A Blob containing the decoded bytes.
  */
 ```
 
-## toObject
+## base64ToFile
 
-🧿 将数组转换成对象
+Convert a base64 data URL to a File object.
 
-```typescript
+```ts
 /**
- * @func toObject
- * @param { Array<any> } arr 数组
- * @param { string[] = [] } filter 保留filter中的key
- * @return { boolean } 
- * @desc 📝 将数组转换成对象
- * @example 
-  import { toObject } from 'lazy-js-utils'
- 
-  const arr = [{
-    a: 1,
-  }, {
-    a: 3,
-    3: 5,
-  }]
-  const data = toObject(arr, ['a']) // { a: [ 1, 3 ] }
- */
-```
-
-## toArray
-
-🧿 将数组中截取尾部换成新数组
-
-```typescript
-/**
- * @func toArray
- * @param { any[] } list 原数组
- * @param { number } start 开始位置
- * @param { number } end 结束位置
- * @return { Array<any> } 新数组
- * @desc 📝 slice的效果，但是更好的兼容性
- * @example 
-  import { toArray } from 'lazy-js-utils'
-
-  const arr = [ 1, 3, 5, 7, 9 ]
-  toArray(arr, 2) // [ 5, 7, 9 ]
+ * Convert a base64 data URL to a File object.
+ *
+ * @param s - Base64 data URL (e.g. 'data:image/png;base64,...')
+ * @param filename - Desired filename for the File
+ * @returns A File built from the decoded base64 data
  */
 ```
 
 ## toAbsolutePath
 
-🧿 将相对路径转换为绝对路径
+将相对路径转换为基于当前工作目录的绝对路径
+EN: Convert a relative filesystem path to an absolute path using process.cwd(); returns the original path if already absolute.
 
-```typescript
+```ts
 /**
- * @func toAbsolutePath
- * @param { string } url 相对路径
- * @return { string } 绝对路径
- * @desc 📝 将相对路径转换为绝对路径
- * @example 
-  import { toAbsolutePath } from 'lazy-js-utils'
-
-  toAbsolutePath('/a/b/c') // http://localhost:8080/a/b/c
-*/
+ * 将相对路径转换为基于当前工作目录的绝对路径
+ * @param {string} url 要转换的路径
+ * @returns {string} 绝对路径
+ * @description EN: Convert a relative filesystem path to an absolute path using process.cwd(); returns the original path if already absolute.
+ */
 ```
 
-## toBase64
+## toSlice
 
-🧿 将 url、File、Blob 类型转换为 base64
+Fast slice implementation that copies elements from `start` to the end into
 
-```typescript
+```ts
 /**
- * @func toBase64
- * @param { File | string | Blob } list 原数组
- * @return { Promise<string> } base64
- * @desc 📝 将url、File、Blob类型转换为base64
- * @example 
-  import { toBase64 } from 'lazy-js-utils'
-
-  const file = new File([''], 'test.png')
-  toBase64(file).then(res => {
-    console.log(res) // data:image/png;base64,
-  })
-*/
+ * Fast slice implementation that copies elements from `start` to the end into
+ * a new array. Designed to be faster than `Array.prototype.slice` in tight
+ * loops for array-like structures.
+ *
+ * @param list - Array-like or string
+ * @param start - Start index (defaults to 0)
+ * @returns A new array containing the sliced values
+ */
 ```
 
-## base64ToBlob
+## fileToBase64
 
-🧿 将 base64 转换为 Blob
+Read a File/Blob and return a data URL (base64 string).
 
-```typescript
+```ts
 /**
- * @func base64ToBlob
- * @param { string } s base64
- * @return { Blob } blob
- * @desc 📝 将base64转换为Blob
- * @example 
-  import { base64ToBlob } from 'lazy-js-utils'
-
-  const blob = base64ToBlob('data:image/png;base64,')
-*/
+ * Read a File/Blob and return a data URL (base64 string).
+ * @param {File|Blob} file
+ * @returns {Promise<string>}
+ */
 ```
 
-## base64ToFile
+## urlToBase64
 
-🧿 将 base64 转换为 File
+Load an image from `url` and draw to canvas to return data URL (base64).
 
-```typescript
+```ts
 /**
- * @func base64ToFile
- * @param { string } s base64
- * @param { string } filename 文件名
- * @return { File } file
- * @desc 📝 将base64转换为File
- * @example 
-  import { base64ToFile } from 'lazy-js-utils'
+ * Load an image from `url` and draw to canvas to return data URL (base64).
+ * Note: this requires the image to be CORS-enabled for canvas access.
+ *
+ * @param {string} url Image URL.
+ * @returns {Promise<string>} Base64 data URL.
+ */
+```
 
-  const file = base64ToFile('data:image/png;base64,','test.png')
-*/
+## toObject
+
+Convert an array of plain objects into an object keyed by property names.
+
+```ts
+/**
+ * Convert an array of plain objects into an object keyed by property names.
+ *
+ * For each key present in the input objects, the returned object will have an
+ * array of values collected from each item. Optionally restrict keys via
+ * `filter`.
+ *
+ * @param arr - Input array of plain objects.
+ * @param filter - Optional list of keys to include.
+ * @returns Object mapping keys to arrays of values.
+ */
+```
+
+## toArray
+
+Ensure value is an array. If input is already an array it is returned as-is;
+
+```ts
+/**
+ * Ensure value is an array. If input is already an array it is returned as-is;
+ * otherwise the value is wrapped in a single-element array.
+ *
+ * @param array - Value or array of values.
+ * @returns An array containing the original value(s).
+ */
+```
+
+## treeToArray
+
+Flatten a tree into an array. The root node is included and children are
+
+```ts
+/**
+ * Flatten a tree into an array. The root node is included and children are
+ * recursively appended. The `children` property is removed from returned
+ * objects.
+ *
+ * @param {Record<string, any>} tree Root node.
+ * @param {string} [children] Children key name.
+ * @returns {Record<string, any>[]} Flattened node array.
+ */
+```
+
+## fileToBlob
+
+Convert a File to a Blob (preserves provided MIME type).
+
+```ts
+/**
+ * Convert a File to a Blob (preserves provided MIME type).
+ *
+ * @param file - File to convert
+ * @param type - Optional MIME type for the resulting Blob
+ * @returns A Blob built from the file's ArrayBuffer
+ */
+```
+
+## fileToArrayBuffer
+
+Read a File/Blob as an ArrayBuffer and return a Uint8Array.
+
+```ts
+/**
+ * Read a File/Blob as an ArrayBuffer and return a Uint8Array.
+ *
+ * @param {File} file File or Blob to read.
+ * @returns {Promise<Uint8Array>} Resolves with file bytes.
+ */
+```
+
+## blobToUrl
+
+Create an object URL for a Blob.
+
+```ts
+/**
+ * Create an object URL for a Blob.
+ *
+ * @param blob - Blob to create a URL for
+ * @returns A blob URL that can be used as a src/href
+ */
+```
+
+## rgbToHex
+
+Convert an `rgb(r,g,b)` CSS color string to hex format `#rrggbb`.
+
+```ts
+/**
+ * Convert an `rgb(r,g,b)` CSS color string to hex format `#rrggbb`.
+ *
+ * Returns `undefined` when input doesn't match `rgb(...)` pattern.
+ *
+ * @param {string} style CSS rgb string, e.g. 'rgb(255, 255, 255)'.
+ * @returns {string | undefined} Hex color string or undefined.
+ */
+```
+
+## hexToRgb
+
+Convert a hex color string to rgb or rgba string.
+
+```ts
+/**
+ * Convert a hex color string to rgb or rgba string.
+ *
+ * Accepts short and full hex formats like '#fff' or '#ffffff'.
+ *
+ * @param {string} hex Hex color string (with leading '#').
+ * @param {number} [opacity] Optional opacity for rgba result.
+ * @returns {string} 'rgb(r,g,b)' or 'rgba(r,g,b,a)'.
+ */
 ```

@@ -3,90 +3,90 @@ title: Random
 description: Random
 ---
 
-## randomRgb
+## randomDate
 
-🧿 随机生成 RGB 颜色
+随机日期函数
+EN: Return a random Date between `start` and `end` (dates as strings). Defaults to 1999/01/1 -> today.
 
-```typescript
+```ts
 /**
- * @func randomRgb
- * @desc 📝 随机生成颜色
- * @return { string } 随机生成RGB颜色
- * @example 
-  import { randomRgb } from 'lazy-js-utils'
-
-  console.log(randomRgb())// 'rgb(255,0,0)'
+ * 随机日期函数
+ * @param { string } start 开始日期 默认 '1999/01/1
+ * @param { string } [end] 截止日期
+ * @returns
+ * @description EN: Return a random Date between `start` and `end` (dates as strings). Defaults to 1999/01/1 -> today.
  */
 ```
 
 ## randomHexColor
 
-🧿 随机生成十六进制颜色
+随机hex颜色
+EN: Generate a random 6-digit hex color string like `#a1b2c3`.
 
-```typescript
+```ts
 /**
- * @func randomHexColor
- * @desc 📝 随机生成十六进制颜色
- * @return { string } 
- * @example 
-  import { randomHexColor } from 'lazy-js-utils'
-
-  console.log(randomHexColor()) // '#ff0000'
- */
-```
-
-## randomDate
-
-🧿 随机生成日期
-
-```typescript
-/**
- * @func randomDate
- * @param { string } startDate 开始日期 1999/01/01 支持/或-
- * @param { string } endDate 结束日期 默认是当前日期
- * @desc 📝 随机生成日期
- * @return { Date } 
- * @example 
-  import { randomDate } from 'lazy-js-utils'
-
-  console.log(randomDate('1999/01/01')) // Mon Jun 06 2011 15:11:37 GMT+0800 (中国标准时间) 可再通过formateDate转换为其他格式 如'yyyy-MM-dd'
- */
-```
-
-## uuid
-
-🧿 生成 uuid
-
-```typescript
-/**
- * @func uuid
- * @desc 📝 生成uuid
- * @param { number } len 长度 默认为8
- * @param { number | string } radix 进制 默认为16
- * @return { string } 随机数
- * @example
-  import { uuid } from 'lazy-js-utils'
-
-  console.log(uuid()) // '71A793A9-BBAE-49FC-B957-5BC71E5AD044'
-  console.log(uuid(16, 'hex')) // 'a0b1c2d3e4f5' 
-  console.log(uuid(8, 2)) // '11110011'
+ * 随机hex颜色
+ * @returns
+ * @description EN: Generate a random 6-digit hex color string like `#a1b2c3`.
  */
 ```
 
 ## randomRange
 
-🧿 生成在范围内的随机数
+获取随机范围值
+EN: Return a random integer between min and max inclusive.
 
-```typescript
+```ts
 /**
- * @func randomRange
- * @desc 📝 生成uuid
- * @param { number } min 最小值
- * @param { number } max 最大值
- * @return { number } 随机数
- * @example
-  import { randomRange } from 'lazy-js-utils'
+ * 获取随机范围值
+ * @param min 最小值 默认 MIN_SAFE_INTEGER
+ * @param max 最大值 默认 MAX_VALUE
+ * @returns
+ * @description EN: Return a random integer between min and max inclusive.
+ */
+```
 
-  console.log(randomRange(1, 10)) // 5
+## randomRgba
+
+随机rgba颜色
+EN: Generate a random `rgba(r,g,b,a)` color string with optional opacity.
+
+```ts
+/**
+ * 随机rgba颜色
+ * @param { number } [opacity] 透明度 默认 1
+ * @returns
+ * @description EN: Generate a random `rgba(r,g,b,a)` color string with optional opacity.
+ */
+```
+
+## randomArray
+
+随机打乱数组
+EN: Shuffle an array in-place using the Fisher–Yates algorithm.
+
+```ts
+/**
+ * 随机打乱数组
+ * @description EN: Shuffle an array in-place using the Fisher–Yates algorithm.
+ * @param array any[]
+ * @returns array
+ */
+```
+
+## uuid
+
+Generate a UUID-like string.
+
+```ts
+/**
+ * Generate a UUID-like string.
+ *
+ * If `len` is provided a random string of that length is returned using the
+ * provided radix. Otherwise a RFC-like UUID of 36 chars is returned.
+ *
+ * @param {number} [len] Length of id to generate.
+ * @param {number|'hex'} [radix] Radix to use for character selection or 'hex'.
+ * @returns {string} Generated id string.
  */
 ```

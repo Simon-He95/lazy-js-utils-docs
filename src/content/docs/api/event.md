@@ -5,425 +5,457 @@ description: Event
 
 ## createElement
 
-🧿 创建元素和属性
+Create a DOM element with optional attributes and innerHTML.
 
-```typescript
+```ts
 /**
- * @func createElement
- * @param { string } tag 标签名
- * @param { Record<string, string> } attributes 属性
- * @desc 📝 创建元素和属性
- * @return { HTMLElement } el
- * @example
-  import { createElement } from 'lazy-js-utils'
-
-  const p = createElement('p',{
-    id: 'test',
-    class: 'test',
-    style: 'xxx'
-  })
+ * Create a DOM element with optional attributes and innerHTML.
+ *
+ * @param tag - tag name to create (e.g. 'div')
+ * @param attributes - optional attributes object to set on the element
+ * @param innerHTML - optional innerHTML to insert
+ * @param options - optional ElementCreationOptions for custom elements
+ * @returns the created HTMLElement
  */
 ```
 
-## findElement
+## createFragment
 
-🧿 查找元素
+Create and return a DocumentFragment. Useful as a lightweight container
 
-```typescript
+```ts
 /**
- * @func findElement
- * @param { string | string[] } selector 选择器
- * @param { boolean } all 是否返回所有
- * @param { HTMLElement } currentNode 当前节点 默认为 document
- * @desc 📝 查找元素
- * @return { HTMLElement ｜HTMLElement[] } selectors
- * @example
-  import { findElement } from 'lazy-js-utils'
-
-  const p = findElement('p') // 查找第一个 p 标签
-  const p = findElement('p', true) // 查找所有 p 标签
-  const result = findElement(['p', 'div']) // 查找第一个 p 标签和 div 标签
-  const result = findElement(['p', 'div'], true) // 查找所有 p 标签和 div 标签
- */
-```
-
-## insertElement
-
-🧿 插入元素
-
-```typescript
-/**
- * @func insertElement
- * @param { HTMLElement | string } parent 父节点
- * @param { HTMLElement | string } element 待插入的元素
- * @param { HTMLElement ｜ null } target 目标元素
- * @desc 📝 插入元素
- * @return { void }
- * @example
-  import { insertElement, createElement } from 'lazy-js-utils'
-
-  const div = createElement('div')
-  insertElement('main', div) // 将 div 插入到 main 中最后一个节点
-  insertElement('main', '.button') // 将 button 插入到 main 中class为button的元素前面
- */
-```
-
-## removeElement
-
-🧿 删除元素
-
-```typescript
-/**
- * @func removeElement
- * @param { HTMLElement ｜ string } target 目标元素
- * @desc 📝 删除元素
- * @return { HTMLElement } parentNode 父节点
- * @example
-  import { insertElement, removeElement } from 'lazy-js-utils'
-  
-  const div = removeElement('div')
-  insertElement('main', div) // 将 div 插入到 main 中最后一个节点
-  removeElement(div) // 将div元素从父节点中移除
- */
-```
-
-## useElementBounding
-
-🧿 获取元素位置
-
-```typescript
-/**
- * @func useElementBounding
- * @param {  Element | string } target 目标元素
- * @param { (rect: DOMRect) => void } callback 回调函数
- * @desc 📝 获取元素位置
- * @return { () => void } 停止事件监听函数
- * @example
-  import { useElementBounding } from 'lazy-js-utils'
-
-  useElementBounding('div', (rect) => {
-    console.log(rect)
-  })
- */
-```
-
-## useIntersectionObserver
-
-🧿 监听元素是否进入视口
-
-```typescript
-/**
- * @func useIntersectionObserver
- * @param { Element | string } target 目标元素
- * @param { (rect: DOMRect) => void } callback 回调函数
- * @param { { root?: Element | Document | string | null; rootMargin?: string; threshold?: number | number[] } } IntersectionObserverOptions 参数
- * @desc 📝 监听元素是否进入视口
- * @return { () => void } 停止事件监听函数
- * @example
-  import { useIntersectionObserver } from 'lazy-js-utils'
-
-  useIntersectionObserver('div', (entries) => {
-    console.log(entries)
-  })
- */
-```
-
-## useMutationObserver
-
-🧿 监听元素变化
-
-```typescript
-/**
- * @func useMutationObserver
- * @param { Element | string } target 目标元素
- * @param { (mutations: MutationRecord[], observer: MutationObserver) => void } callback 回调函数 callback 回调函数
- * @param { { childList?: boolean; attributes?: boolean; characterData?: boolean; subtree?: boolean; attributeOldValue?: boolean; characterDataOldValue?: boolean; attributeFilter?: string[] } } options 参数
- * @desc 📝 监听元素变化
- * @return { () => void } 停止事件监听函数
- * @example
-  import { useMutationObserver } from 'lazy-js-utils'
-
-  useMutationObserver('div', (mutations, observer) => {
-    console.log(mutations, observer)
-  })
- */
-```
-
-## useResizeObserver
-
-🧿 监听窗口大小变化
-
-```typescript
-/**
- * @func useResizeObserver
- * @param { ( width: number, height: number ) => void } callback 回调函数
- * @desc 📝 监听窗口大小变化
- * @return { () => void } 停止事件监听函数
- * @example
-  import { useResizeObserver } from 'lazy-js-utils'
-
-  useResizeObserver((width, height) => {
-    console.log('窗口大小:', width, height)
-  })
- */
-```
-
-## useWindowScroll
-
-🧿 监听滚动条位置
-
-```typescript
-/**
- * @func useWindowScroll
- * @param { ( left: number, top: number ) => void } callback 回调函数
- * @desc 📝 监听滚动条位置
- * @return { () => void } 停止事件监听函数
- * @example
-  import { useWindowScroll } from 'lazy-js-utils'
-
-  useWindowScroll((left, top) => {
-    console.log('滚动条位置:', left, top)
-  })
- */
-```
-
-## useInterval
-
-🧿 定时器执行函数
-
-```typescript
-/**
- * @func useInterval
- * @param { () => void } fn 执行函数
- * @param { number } duration 间隔时间
- * @desc 📝 定时器执行函数
- * @return { () => void } 停止事件监听函数
- * @example
-  import { useInterval } from 'lazy-js-utils'
-
-  // 每秒打印一次
-  let count = 0
-  const stop = useInterval(() => {
-    console.log('hi')
-    count ++
-  }, 1000)
-  // 第五次后停止
-  if (count === 5) {
-    stop()
-  }
- */
-```
-
-## useTimeout
-
-🧿 定时器执行函数
-
-```typescript
-/**
- * @func useTimeout
- * @param { () => void } fn 执行函数
- * @param { number } duration 间隔时间
- * @desc 📝 定时器执行函数
- * @return { () => void } 停止事件监听函数
- * @example
-  import { useTimeout } from 'lazy-js-utils'
-
-  // 一秒后打印
-  const stop = useTimeout(() => {
-    console.log('hi')
-  }, 1000)
- */
-```
-
-## useKeyBoard
-
-🧿 监听键盘事件, 执行函数
-
-```typescript
-/**
- * @func useKeyBoard
- * @param { string } press 键盘按键
- * @param { (code: string) => void } callback 回调函数
- * @desc 📝 监听键盘事件, 执行函数
- * @return { () => void } 停止事件监听函数
- * @example
-  import { useKeyBoard } from 'lazy-js-utils'
-
-  // 监听键盘按键
-  const stop = useKeyBoard('Ctrl+c', () => {
-    console.log('用户按下了 Ctrl+c')
-  })
+ * Create and return a DocumentFragment. Useful as a lightweight container
+ * for building up DOM nodes before inserting them into the live document.
+ *
+ * @returns DocumentFragment
  */
 ```
 
 ## dragEvent
 
-🧿 点击拖拽松开事件封装
+Unified drag event helper that supports mouse and touch.
 
-```typescript
+```ts
 /**
- * @func dragEvent
- * @param { string | HTMLElement } target 目标元素
- * @param { { dragStart: (e) => void , dragMove: (e) => void , dragEnd: (e) => void } } options 绑定事件参数
- * @param { boolean } trigger 默认false,在容器上移动就会触发，为true时，只有按下在目标元素上移动才会触发
- * @desc 📝 dragEvent会在移动端是切换touch事件,在PC端是用mouse事件，保持接收的event对象基本是一致的
- * @return { () => void } 停止事件监听函数
- * @example
-  import { dragEvent } from 'lazy-js-utils'
-
-  const stop = dragEvent('#main', {
-    dragStart(e) {
-      console.log('start', e.clientX, e.clientY)
-    },
-    dragMove(e) {
-      console.log('move',  e.clientX, e.clientY)
-    },
-    dragEnd(e) {
-      console.log('end',  e.clientX, e.clientY)
-    },
-  })
+ * Unified drag event helper that supports mouse and touch.
+ * It normalizes touch events to look like mouse events (clientX/clientY etc.).
+ *
+ * @param target - Element or selector to attach drag handlers to
+ * @param options - Handlers: dragStart, dragMove, dragEnd
+ * @param trigger - When true, move events only fire after a start
+ * @returns A stop function to remove all listeners
  */
 ```
 
-## useEventListener
+## findElement
 
-🧿 给元素添加事件函数
+Find element(s) by CSS selector.
 
-```typescript
+```ts
 /**
- * @func useEventListener
- * @param { string | HTMLElement } target 目标元素
- * @param { string } eventName 事件名称
- * @param { (e)=>void } callback 回调函数
- * @param { AddEventListenerOptions } useCapture { once?: boolean; passive?: boolean; signal?: AbortSignal; }
- * @param { boolean } autoRemove 是否自动移除事件
- * @desc 📝 给元素添加事件函数
- * @return { () => void } 停止事件监听函数
- * @example
-  import { useEventListener } from 'lazy-js-utils'
-
-  const remove = useEventListener('#btn',
-    'click',
-    () => {
-      console.log('click')
-    }
-  )
-  useEventListener(document,'DOMContentLoaded', () => {
-    console.log('我就执行一次,然后事件就被自动移除了')
-  }, false, true)
+ * Find element(s) by CSS selector.
+ *
+ * - If `selector` is a string and `all` is truthy, returns a NodeList of matches.
+ * - If `selector` is a string and `all` is falsy, returns the first matched
+ *   HTMLElement or null.
+ * - If `selector` is an array of selectors, returns an array of Elements
+ *   matching all selectors (flattened).
+ * - If an actual HTMLElement or NodeList is passed as `selector`, it is
+ *   returned unchanged (passthrough) which makes this helper safe to call
+ *   on union-typed variables.
+ *
+ * @param selector - CSS selector, array of selectors, HTMLElement, NodeList, or falsy
+ * @param all - when true, return all matched nodes; when an HTMLElement is
+ *   passed, it is used as the `currentNode` to query from. Default is false.
+ * @param currentNode - Root node to query from (defaults to `document`).
  */
 ```
 
-## useMouse
+## insertElement
 
-🧿 监听鼠标移动
+Insert an element into a parent node.
 
-```typescript
+```ts
 /**
- * @func useMouse
- * @param { callback: (e: MouseEvent) => void, delay = 0 } callback 回调函数，delay x毫秒内只执行一次
- * @desc 📝 监听鼠标移动
- * @return { e } MouseEvent
- * @example
-  import { useMouse } from 'lazy-js-utils'
+ * Insert an element into a parent node.
+ *
+ * `parent` may be an HTMLElement or a selector string (the implementation uses
+ * `mount` which resolves strings). `element` may be an HTMLElement,
+ * DocumentFragment, or HTML string. If `target` is supplied, the element is
+ * inserted before that child; otherwise it is appended.
+ *
+ * @param parent - parent element or selector
+ * @param element - element, fragment or HTML string to insert
+ * @param target - optional node to insert before
+ */
+```
 
-  useMouse((e)=>{
-    console.log(e.clientX, e.clientY)
-  })
+## removeElement
+
+Remove an element from the DOM.
+
+```ts
+/**
+ * Remove an element from the DOM.
+ *
+ * Accepts an HTMLElement (or ChildNode/DocumentFragment) or a selector string.
+ * If a selector is provided it will be resolved via `findElement` (caller
+ * should resolve before calling if passing a selector).
+ *
+ * @param el - Element or selector to remove
+ * @returns the parent HTMLElement that contained the removed node, or null
  */
 ```
 
 ## useClick
 
-🧿 监听鼠标点击事件
+Attach a click listener to a target (element or selector).
 
-```typescript
+```ts
 /**
- * @func useClick
- * @param { target: string | HTMLElement, callback: (e: MouseEvent) => void } target 目标元素，callback 回调函数
- * @desc 📝 监听鼠标点击事件
- * @return { void }
- * @example
-  import { useClick } from 'lazy-js-utils'
-
-  useClick('#btn', (e)=>{
-    console.log(e.target)
-  })
+ * Attach a click listener to a target (element or selector).
+ * The listener will be mounted when the element becomes available and can be stopped.
+ *
+ * @param target - A DOM element, selector string, or Document to attach the listener to
+ * @param callback - MouseEvent handler
+ * @returns A function that stops the listener. If called before the element exists, it will cancel mounting.
  */
 ```
 
-## useHover
+## useElementBounding
 
-🧿 监听元素 hover 事件
+Watch an element's bounding rect and invoke callback when you want to sample it.
 
-```typescript
+```ts
 /**
- * @func useHover
- * @param { target: string | HTMLElement, callback: (isHover: boolean, e: MouseEvent) => void } target 目标元素，callback 回调函数
- * @desc 📝 监听元素hover事件
- * @return { () => void }
- * @example
-  import { useHover } from 'lazy-js-utils'
+ * Watch an element's bounding rect and invoke callback when you want to sample it.
+ * The function installs a mount handler to obtain the element and returns a
+ * scroll listener stop function so callers can keep the rect up-to-date on scroll.
+ *
+ * @param element - Element or selector to measure
+ * @param callback - Receives the element's DOMRect
+ * @returns Stop function for the scroll listener
+ */
+```
 
-  useHover('#btn', (isHover,e)=>{
-    if(isHover){
-      console.log('hover')
-  })
+## useEventListener
+
+Add an event listener to a target. The function supports Window, Document, Element,
+
+```ts
+/**
+ * Add an event listener to a target. The function supports Window, Document, Element,
+ * MediaQueryList or selector string. Listener is automatically cleaned up when unmounted.
+ *
+ * @template T - Event name type from WindowEventMap & DocumentEventMap
+ * @param target - Target to attach to (element, selector, window, document, or media query list)
+ * @param eventName - Event name
+ * @param callback - Event handler
+ * @param useCapture - Options for addEventListener (capture or options object)
+ * @param autoRemove - If true the listener will remove itself after first call
+ * @returns A function that stops/removes the listener
  */
 ```
 
 ## useFocus
 
-🧿 自动聚焦
+Focus the first input within the provided target when it becomes available.
 
-```typescript
+```ts
 /**
- * @func useFocus
- * @param { target: string | HTMLElement } target 目标元素
- * @desc 📝 自动聚焦
- * @return { void }
- * @example
-  import { useFocus } from 'lazy-js-utils'
-
-  <-- #html
-  <div class="input-wrapper"><input type="text"/></div>
-  -->
-  useFocus('.input-wrapper')
+ * Focus the first input within the provided target when it becomes available.
+ *
+ * @param target - Element, selector, or 'body' to search input within
  */
 ```
 
-## download
+## useHover
 
-🧿 下载
+Listen for hover enter/leave on a target and invoke callback with the hover state.
 
-```typescript
+```ts
 /**
- * @func download
- * @param { string } href 下载链接
- * @param { string } download 下载文件名
- * @desc 📝 下载
- * @return { void }
- * @example
-  import { download } from 'lazy-js-utils'
+ * Listen for hover enter/leave on a target and invoke callback with the hover state.
+ *
+ * @param target - Element or selector to observe
+ * @param callback - Called with (isHover, event)
+ * @returns A function that stops both listeners
+ */
+```
 
-  download('https://www.baidu.com/img/bd_logo1.png', 'baidu.png')
+## useIntersectionObserver
+
+Observe intersection changes for an element and call callback with entries.
+
+```ts
+/**
+ * Observe intersection changes for an element and call callback with entries.
+ * `options.root` may be a selector string; if so it will be resolved via `findElement`.
+ *
+ * @param element - Element or selector to observe
+ * @param callback - Receives IntersectionObserverEntry[] when the observer fires
+ * @param options - IntersectionObserver options (root may be selector string)
+ * @returns A stop function that disconnects the observer
+ */
+```
+
+## useInterval
+
+A small helper around setInterval which exposes pause/resume controls.
+
+```ts
+/**
+ * A small helper around setInterval which exposes pause/resume controls.
+ * If fn is not a function undefined is returned.
+ *
+ * @param fn - Callback function to run on each interval
+ * @param duration - Interval duration in milliseconds
+ * @returns Controls object with isActive, pause and resume methods, or undefined
+ */
+```
+
+## useKeyBoard
+
+Listen for specific keyboard shortcut string, e.g. "Ctrl+Shift+X".
+
+```ts
+/**
+ * Listen for specific keyboard shortcut string, e.g. "Ctrl+Shift+X".
+ * Calls the callback when the generated key string matches the provided one.
+ *
+ * @param c - Shortcut string to match
+ * @param callback - Called with the matched code when it occurs
+ * @returns A stop function that removes the keydown listener
+ */
+```
+
+## useMouse
+
+Throttled mousemove listener. The callback will be called at most once per `delay` ms.
+
+```ts
+/**
+ * Throttled mousemove listener. The callback will be called at most once per `delay` ms.
+ *
+ * @param callback - MouseEvent handler
+ * @param delay - Minimum ms between invocations
+ * @returns A stop function to remove the listener
+ */
+```
+
+## useMutationObserver
+
+Observe DOM mutations on a parent node and invoke callback when changes occur.
+
+```ts
+/**
+ * Observe DOM mutations on a parent node and invoke callback when changes occur.
+ *
+ * @param element - The node or selector to observe
+ * @param callback - MutationCallback invoked with mutations
+ * @param options - MutationObserverInit options (defaults to { childList: true })
+ * @returns A stop function to disconnect the observer
+ */
+```
+
+## useResizeObserver
+
+Call the callback when the window is resized, returning the viewport width and height.
+
+```ts
+/**
+ * Call the callback when the window is resized, returning the viewport width and height.
+ *
+ * @param callback - Receives (width, height)
+ * @returns A stop function for the resize listener
+ */
+```
+
+## useWindowScroll
+
+Listen to document scroll and call callback with current scrollLeft/scrollTop.
+
+```ts
+/**
+ * Listen to document scroll and call callback with current scrollLeft/scrollTop.
+ *
+ * @param callback - Receives (left, top)
+ * @returns A stop function for the scroll listener
+ */
+```
+
+## useTimeout
+
+Run a function once after a delay and return a stop function.
+
+```ts
+/**
+ * Run a function once after a delay and return a stop function.
+ * If fn is not a function, undefined is returned.
+ *
+ * @param fn - Function to run after the delay
+ * @param duration - Delay in milliseconds (default 0)
+ * @returns A function that clears the timeout, or undefined if fn is not a function
  */
 ```
 
 ## collisionDetection
 
-🧿 碰撞检测
+Return whether two elements overlap (axis-aligned bounding box collision).
 
-```typescript
+```ts
 /**
- * @func collisionDetection
- * @param { string | HTMLElement } o1 目标元素1
- * @param { string | HTMLElement } o2 目标元素2
- * @desc 📝 碰撞检测
- * @return { void }
- * @example
-  import { collisionDetection } from 'lazy-js-utils'
+ * Return whether two elements overlap (axis-aligned bounding box collision).
+ *
+ * @param o1 - Element, selector, or null-like value for the first object
+ * @param o2 - Element, selector, or null-like value for the second object
+ * @returns true if the two bounding boxes overlap, false otherwise
+ */
+```
 
-  collisionDetection('#o1', '#o2') // true
+## download
+
+Trigger a download by creating a temporary anchor and clicking it.
+
+```ts
+/**
+ * Trigger a download by creating a temporary anchor and clicking it.
+ *
+ * @param href - URL to download
+ * @param download - suggested filename
+ */
+```
+
+## IMeta
+
+Mount meta/script/link elements and optionally set document.title.
+
+```ts
+/**
+ * Mount meta/script/link elements and optionally set document.title.
+ * The created nodes are inserted into document.head and a function to remove
+ * the created fragment is returned.
+ *
+ * @param options - Head options (title, meta, script, link)
+ * @returns A function that removes the inserted nodes from the head
+ */
+```
+
+## IScript
+
+Mount meta/script/link elements and optionally set document.title.
+
+```ts
+/**
+ * Mount meta/script/link elements and optionally set document.title.
+ * The created nodes are inserted into document.head and a function to remove
+ * the created fragment is returned.
+ *
+ * @param options - Head options (title, meta, script, link)
+ * @returns A function that removes the inserted nodes from the head
+ */
+```
+
+## ILink
+
+Mount meta/script/link elements and optionally set document.title.
+
+```ts
+/**
+ * Mount meta/script/link elements and optionally set document.title.
+ * The created nodes are inserted into document.head and a function to remove
+ * the created fragment is returned.
+ *
+ * @param options - Head options (title, meta, script, link)
+ * @returns A function that removes the inserted nodes from the head
+ */
+```
+
+## HeadOptions
+
+Mount meta/script/link elements and optionally set document.title.
+
+```ts
+/**
+ * Mount meta/script/link elements and optionally set document.title.
+ * The created nodes are inserted into document.head and a function to remove
+ * the created fragment is returned.
+ *
+ * @param options - Head options (title, meta, script, link)
+ * @returns A function that removes the inserted nodes from the head
+ */
+```
+
+## useHead
+
+Mount meta/script/link elements and optionally set document.title.
+
+```ts
+/**
+ * Mount meta/script/link elements and optionally set document.title.
+ * The created nodes are inserted into document.head and a function to remove
+ * the created fragment is returned.
+ *
+ * @param options - Head options (title, meta, script, link)
+ * @returns A function that removes the inserted nodes from the head
+ */
+```
+
+## useLongPress
+
+Fire callback when the target receives a long mouse press (mousedown -> mouseup after ms).
+
+```ts
+/**
+ * Fire callback when the target receives a long mouse press (mousedown -> mouseup after ms).
+ *
+ * @param el - target element or selector
+ * @param ms - duration threshold in milliseconds
+ * @param callback - invoked when a long press is detected
+ * @returns A stop function to remove listeners
+ */
+```
+
+## useBlur
+
+Call callback when focus is lost from the given element.
+
+```ts
+/**
+ * Call callback when focus is lost from the given element.
+ * Internally it uses click listeners to determine when clicks happen inside/outside.
+ *
+ * @param el - Target element or selector
+ * @param callback - Called when focus is lost (click outside)
+ * @returns A stop function to remove listeners
+ */
+```
+
+## createTextNode
+
+Create a DOM Text node from a string.
+
+```ts
+/**
+ * Create a DOM Text node from a string.
+ *
+ * @param {string} text Text content.
+ * @returns {Text} A DOM Text node.
+ */
+```
+
+## useRange
+
+Get the bounding client rect for a caret/cursor position at the start of a node.
+
+```ts
+/**
+ * Get the bounding client rect for a caret/cursor position at the start of a node.
+ * Useful for positioning popups next to inline nodes. If the container has offsets
+ * the caller may need to subtract them.
+ *
+ * @param target - Node to measure
+ * @returns DOMRect representing the range bounding box
  */
 ```

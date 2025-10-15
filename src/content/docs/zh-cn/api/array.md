@@ -3,423 +3,203 @@ title: Array
 description: Array
 ---
 
-## chunk
-
-🧿 数组分割
-
-```typescript
-/**
- * @func chunk
- * @param { any[] } arr 数组
- * @param { number } size 以多少为基准分割
- * @returns  分割后的数组
- * @example
-export function chunk(arr: any[], size = 1) {
-  if (size < 1)
-    return []
-  const result = []
-  for (let i = 0; i < arr.length; i += size) result.push(arr.slice(i, i + size))
-
-  return result
-}
-
-console.log(chunk([1, 3, 5, 7], 2)); // [ [1, 3], [5, 7]]
- */
-```
-
-## countBy
-
-🧿 统计数组中某一项的结果
-
-```typescript
-/**
- * @func countBy
- * @param { any[] } array 数组
- * @param { Function } iterator 迭代数组函数
- * @returns 结果的个数
- * @example
-export function countBy(
-  array: any[],
-  iterator: (item: Record<string, any>) => any,
-) {
-  return array.reduce((result, item) => {
-    const val = iterator(item)
-    if (!result[val])
-      result[val] = 1
-    else result[val]++
-    return result
-  }, {} as Record<string, number>)
-}
-
-// const array = [
-//   { 'user': '1', 'active': true },
-//   { 'user': '2', 'active': false },
-//   { 'user': '3', 'active': true },
-//   { 'user': '4', 'active': true },
-//   { 'user': '5', 'active': true },
-// ]
-// console.log(countBy(array, (item) => {
-//   return item.active
-// })) // { true: 4, false: 1 }
- */
-```
-
 ## diff
 
-🧿 对比 2 个数组中的相同或不同的部分
+比较两个数组，返回相同项或不同项（值或索引）
+EN: Compare two arrays and return either same/different items or their indices.
 
-```typescript
+```ts
 /**
- * @func diff
- * @param { array1: any[] } 数组1
- * @param { array2: any[] } 数组2
- * @param {
- * {
- *  compare: 'same' | 'different'
- *  result: 'value' | 'index'
- * }
- * } 样式
- * @desc 📝 设置css变量值
- * @example
-  import { diff } from 'lazy-js-utils'
-
-  const arr1 = [1, 3, 5]
-  const arr2 = [1, 4, 5]
-  diff(arr1, arr2, { compare: 'same', result: 'value' }) // [1, 5]
-  diff(arr1, arr2, { compare: 'same', result: 'index' }) // [0, 2]
-  diff(arr1, arr2, { compare: 'different', result: 'value' }) // [ [3, 4] ]
-  diff(arr1, arr2, { compare: 'different', result: 'index' }) // [1]
- */
-```
-
-## filterEmpty
-
-🧿 过滤空值的数组
-
-```typescript
-/**
- /**
- * @func filterEmpty
- * @param { any[] } array 数组
- * @returns 过滤空值后的数组
- * @example
-export function filterEmpty(array: any[]) {
-  return array.filter(Boolean)
-}
- */
-```
-
-## flatten
-
-🧿 数组扁平化
-
-```typescript
-/**
- * @func flatten
- * @param { Record<string, any> | Record<string, any>[] } o 对象或者数组
- * @param { string }flattenProps 展开的属性默认为children
- * @param { boolean }onlyLastNode  只保留最后一层级的数据
- * @returns 一层的数组
- * @example
-    const obj = {
-      a: '1',
-      children: [
-        {
-          b: '12',
-          children: {
-            e: '44'
-          }
-        },
-        {
-          c: '33', children: [
-            { dd: '5' }
-          ]
-        }
-      ]
-    }
-
-    console.log(flatten(obj))
+ * 比较两个数组，返回相同项或不同项（值或索引）
+ * @description EN: Compare two arrays and return either same/different items or their indices.
+ * @param {any[]} array1 First array.
+ * @param {any[]} array2 Second array.
+ * @param {Options} [options] Comparison options.
+ * @returns {any[] | number[][]} Depending on options, returns matching values, indices, or paired differences.
  */
 ```
 
 ## forEach
 
-🧿 一个可中断的 forEach
+遍历数组并允许通过返回值提前退出
+EN: Iterate over an array and allow early return if the callback returns a defined value.
 
-```typescript
+```ts
 /**
- * @func forEach
- * @param { element:string | HTMLElement } 元素
- * @param { style: string } 样式
- * @param { callback: (css: string) => void } 样式
- * @desc 📝 如果返回值不是undefined，那么就会中断循环
- * @example
-  import { forEach } from 'lazy-js-utils'
-
-  const arr = [1, 2, 3, 4, 5]
-  const result = forEach(arr, (item, index) => {
-    if (item === 3) {
-      return 'break'
-    }
-  }) // 'break'
- */
-```
-
-## forEachBack
-
-🧿 逆序遍历数组
-
-```typescript
-/**
- * @func forEach 逆序遍历
- * @param { T[] } arr 数组
- * @param { (item: T, i: number) => void } callback 回调
- * @returns
- * @example
- *
- * import { forEachBack } from 'lazy-js-utils'
- *
- * const arr = [1, 2, 3, 4, 5]
- *
- * forEachBack(arr, (item, i) => {
- *   console.log(item)
- * })
- */
-```
-
-## mapBack
-
-🧿 逆序遍历数组
-
-```typescript
-/**
- * @func mapBack 逆序遍历
- * @param { T[] } arr 数组
- * @param { (item: T, i: number) => void } callback 回调
- * @param { boolean } [reverse] 结果是否颠倒顺序
- * @returns
- * @example
- *
- * import { mapBack } from 'lazy-js-utils'
- *
- * const arr = [1, 2, 3, 4, 5]
- *
- * mapBack(arr, (item, i) => {
- *   console.log(item)
- *   return item
- * })
+ * 遍历数组并允许通过返回值提前退出
+ * @description EN: Iterate over an array and allow early return if the callback returns a defined value.
+ * @param {T[]} array Input array to iterate.
+ * @param {(value: T, index: number, array: T[]) => any} callback Callback invoked for each element.
+ * @returns {any} The first defined (non-undefined) return value from the callback, or undefined.
  */
 ```
 
 ## getAverage
 
-🧿 获取数组的平均值
+计算数字数组的平均值并格式化为指定小数位
+EN: Compute the average of a number array and return it formatted to a fixed number of decimal places.
 
-```typescript
+```ts
 /**
- * @func getAverage
- * @param { number[] } 数字数组
- * @param { number } fraction 保留小数位数
- * @desc 📝 获取数组的平均值
- * @example
-  import { getAverage } from 'lazy-js-utils'
-
-  const arr = [1, 2, 3, 4, 5]
-  getAverage(arr) // 3
-  getAverage(arr, 2) // 3.00
+ * 计算数字数组的平均值并格式化为指定小数位
+ * @description EN: Compute the average of a number array and return it formatted to a fixed number of decimal places.
+ * @param {number[]} array Input numbers.
+ * @param {number} [fraction] Number of decimal places to keep.
+ * @returns {string} Formatted average as string (from toFixed).
  */
 ```
 
 ## quickFilter
 
-🧿 快速过滤数组
+快速筛选数组项，支持简易条件或正则
+EN: Filter an array quickly by simple conditions or regex expressions. Keys can be 'prop=value' or regex literals.
 
-```typescript
+```ts
 /**
- * @func quickFilter
- * @param { any[] } array 数组
- * @param { string | Array<string> } key 键
- * @return { any[] }
- * @desc 📝 快速过滤数组，key支持多条件和正则
- * @example
-  import { quickFilter } from 'lazy-js-utils'
-  
-  const arr = [{
-    name:'zhangsan'
-  },{
-    name:'lisi'
-  },{
-    name:'wangwu',
-    age: 18
-  }]
-
-  quickFilter(arr, 'name=/lisi/') // [ { name: 'lisi' } ]
-    quickFilter(arr, ['name=/lisi/','age=/18/']) // [ { name: 'lisi' }, { name: 'wangwu', age: 18 } ]
+ * 快速筛选数组项，支持简易条件或正则
+ * @description EN: Filter an array quickly by simple conditions or regex expressions. Keys can be 'prop=value' or regex literals.
+ * @param {any[]} array Input array of objects.
+ * @param {string | string[]} key Filter key or array of keys.
+ * @returns {any[]} Filtered array.
  */
 ```
 
 ## quickFind
 
-🧿o(1)的根据 key 查找数组中的项
+快速建立基于主键的查找结构（支持增删改）
+EN: Build a quick-find helper for arrays keyed by a primary field. Returns an object with find/set/delete utilities.
 
-```typescript
+```ts
 /**
- * @func quickFind
- * @param { any[] } array 数组
- * @param { string | number } id 主键
- * @return {
- * {
- *  find: (id: any) => any
- *  set: (id: any, key: any, value?: any) => any[]
- *  delete: (id: any) => any[]
- * }
- * } 停止监听函数 
- * @desc 📝 o(1)的根据key查找数组中的项
- * @example
-  import { quickFind } from 'lazy-js-utils'
-
-  const arr = [{
-    id: 1,
-    name: 'zhangsan'
-  },{
-    id: 2,
-    name: 'lisi'
-  },{
-    id: 3,
-    name: 'wangwu'
-  }]
-  const qf = quickFind(arr, 'id')
-  qf.find(1) // { id: 1, name: 'zhangsan' }
- */
-```
-
-## removeItem
-
-🧿o(1)的根据 key 查找数组中的项
-
-```typescript
-/**
- * @func removeItem
- * @param { Array<unknown> } arr 数组
- * @param { unknown } item 数组中的一项
- * @returns 删除该项的数组
- * @example
-  import { removeItem } from 'lazy-js-utils'
-
-  const arr = [1,2,3]
-  removeItem(arr, 2)
+ * 快速建立基于主键的查找结构（支持增删改）
+ * @description EN: Build a quick-find helper for arrays keyed by a primary field. Returns an object with find/set/delete utilities.
+ * @template T Record-like item type.
+ * @param {T[]} array Input array of records.
+ * @param {keyof T | string} id Property name used as primary key.
+ * @returns {QuickFind<T>} QuickFind wrapper instance.
  */
 ```
 
 ## sort
 
-🧿 数组排序
+数组排序，支持多字段和升降顺序
+EN: Sort an array by specified fields. `match` can be a string/number or an array of fields; prefix a field with '-' for descending order.
 
-```typescript
+```ts
 /**
- * @func sort
- * @param { any[] } array 数组
- * @param { Array<string | number> | number | string } match匹配条件
- * @return { any[] } 排序后的数组
- * @desc 📝 数组排序
- * @example 
-  import { sort } from 'lazy-js-utils'
-  
-  const arr = [{
-    age: 1
-  }, {
-    age: 4
-  }, {
-    age: 3
-  }]
-  // 按照age从小到大排列
-  sort(arr, 'age') // [{ age: 1 }, { age: 3 }, { age: 4 }]
-  // 按照age从大到小排列
-  sort(arr, '-age') // [{ age: 4 }, { age: 3 }, { age: 1 }]
-  // 先按照age从小到大排列，再按照name从大到小排列
-  sort(arr,['age','-name'])
- */
+   * 数组排序，支持多字段和升降顺序
+   * @description EN: Sort an array by specified fields. `match` can be a string/number or an array of fields; prefix a field with '-' for descending order.
+   * @param {T[]} array Input array to sort.
+   * @param {Array<string|number>|number|string} match Field(s) or mode to sort by (e.g. ['-age','name'] or '1').
+   * @returns {T[]} Sorted array.
+   */
 ```
 
 ## sortByOrder
 
-🧿 按照顺序排序
+根据指定顺序对数组排序
+EN: Sort items in `array` according to the given `order` sequence. Items not in `order` will be placed after ordered items. Use `key` to pick nested values (dot path supported).
 
-```typescript
+```ts
 /**
-* @func sortByOrder
-* @param { any[] } sortArr 数组
-* @param { string[] } order 排序规则
-* @return { string } prop 根据哪个属性排序 
-* @desc 📝 按照顺序排序
-* @example 
-  import { sortByOrder } from 'lazy-js-utils'
-
-  const order = ['name', '*', 'weight']
-  const arr = [{
-    props: {
-      key: 'weight',
-    },
-  }, {
-    props: {
-      key: 'name',
-    },
-  }, {
-    props: {
-      key: 'width',
-    },
-  }, {
-    props: {
-      key: 'age',
-    },
-  }]
-  sortByOrder(arr, order, 'props.key') // [{ props: { key: 'name' } }, { props: { key: 'weight' } }, { props: { key: 'width' } }, { props: { key: 'age' } }]
-*/
+ * 根据指定顺序对数组排序
+ * @description EN: Sort items in `array` according to the given `order` sequence. Items not in `order` will be placed after ordered items. Use `key` to pick nested values (dot path supported).
+ * @param {T[]} array The input array to sort.
+ * @param {Array<string|number>} order An array specifying the desired order of values. Use "*" in `order` to mark the insertion index for remaining items.
+ * @param {string} [key] Optional dot-separated key name to extract the value from objects in `array`.
+ * @returns {T[]} A new array sorted according to `order`.
+ */
 ```
 
 ## uniqueArray
 
-🧿 数组根据值去重
+数组去重函数
+EN: Remove duplicates from an array. Optionally dedupe by specified key paths (supports nested paths like 'target.age').
 
-```typescript
+```ts
 /**
-* @func uniqueArray
-* @param { any[] } array 数组
-* @return { any[] } 去重后的数组
-* @desc 📝 数组根据值去重
-* @example 
-  import { uniqueArray } from 'lazy-js-utils'
-
-   const array = [
-      {
-        name: 'simon',
-        age: '18',
-      },
-      {
-        name: 'simon',
-        age: '18',
-      },{
-        name:'simon'
-      }
-    ]
-    const result = uniqueArray(array) // [{ name: 'simon', age: '18' }, { name: 'simon', age: '18' }]
-*/
+ * 数组去重函数
+ * @description EN: Remove duplicates from an array. Optionally dedupe by specified key paths (supports nested paths like 'target.age').
+ * @param { any[] } array 数组
+ * @param { string[] } keys 可选，指定比较的键路径数组，如 ['name', 'target.age']。如果指定了keys，则只要这些指定的键值都相同，就认为是同一项进行去重
+ * @returns 去重后的数组
+ * @example
+ * // 基本去重
+ * uniqueArray([1, 2, 2, 3]) // [1, 2, 3]
+ *
+ * // 按指定键去重
+ * uniqueArray([
+ *   { name: 'Tom', age: 20 },
+ *   { name: 'Tom', age: 25 },
+ *   { name: 'Jerry', age: 20 }
+ * ], ['name']) // [{ name: 'Tom', age: 20 }, { name: 'Jerry', age: 20 }]
+ *
+ * // 按多个键去重
+ * uniqueArray([...], ['name', 'age']) // 只有name和age都相同才认为是重复项
+ *
+ * // 按嵌套键去重
+ * uniqueArray([...], ['target.age']) // 支持深层嵌套访问
+ */
 ```
 
-## toggleItem
+## chunk
 
-🧿 数组中如果有则删除，如果没有则增加
+将数组拆分为指定大小的块
+EN: Split an array into chunks of the given size.
 
-```typescript
+```ts
 /**
-* @func toggleItem
- * @param { Array<unknown> } arr 数组
- * @param { unknown } item
-* @example 
-  import { toggleItem } from 'lazy-js-utils'
+ * 将数组拆分为指定大小的块
+ * @description EN: Split an array into chunks of the given size.
+ * @param {T[]} arr Input array to split.
+ * @param {number} [size] Maximum size of each chunk.
+ * @returns {T[][]} Array of chunked arrays.
+ */
+```
 
-   const array = [1，2，3]
-    toggleItem(4) // [1,2,3,4]
-    toggleItem(4) // [1,2,3]
-*/
+## countBy
+
+按照迭代器结果统计数组中元素出现次数
+EN: Count elements in an array grouped by the value returned from the iterator.
+
+```ts
+/**
+ * 按照迭代器结果统计数组中元素出现次数
+ * @description EN: Count elements in an array grouped by the value returned from the iterator.
+ * @param { any[] } array Input array to count.
+ * @param { Function } iterator Function that maps each item to a key.
+ * @returns {Record<string, number>} Map from key to its occurrence count.
+ */
+```
+
+## flatten
+
+将嵌套结构扁平化为数组
+EN: Flatten a nested tree-like structure into a flat array. The property used for children can be customized.
+
+```ts
+/**
+ * 将嵌套结构扁平化为数组
+ * @description EN: Flatten a nested tree-like structure into a flat array. The property used for children can be customized.
+ * @param { Record<string, any> | Record<string, any>[] } o Object or array to flatten.
+ * @param { string } [flattenProps] Property name that holds children.
+ * @param { boolean } [onlyLastNode] When true, only keep leaf nodes.
+ * @param { any[] } [result] Internal accumulator used during recursion.
+ * @returns { any[] } Flattened array of nodes.
+ */
+```
+
+## filterEmpty
+
+/**
+EN: Remove empty/falsey values from an array (filters with Boolean).
+
+```ts
+/**
+/**
+ * 过滤数组中的空值（falsey 值）
+ * @description EN: Remove empty/falsey values from an array (filters with Boolean).
+ * @param {T[]} array Input array.
+ * @returns {T[]} Filtered array with truthy values only.
+ */
 ```

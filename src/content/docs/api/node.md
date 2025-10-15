@@ -3,200 +3,237 @@ title: Node
 description: Node
 ---
 
-## getPkgTool
-
-🧿 获取当前项目的包管理工具
-
-```typescript
-/**
- * @func getPkgTool
- * @return { 'yarn' | 'pnpm' | 'npm' | 'bun' }
- * @desc 📝 获取当前项目的包管理工具
- * @example 
-  import { getPkgTool } from './lazy-js-utils'
-  getPkgTool() // 'pnpm'
- */
-```
-
-## jsShell
-
-🧿js 调用 shell 命令
-
-```typescript
-/**
- * @func jsShell
- * @param { string } cmd shell命令
- * @param { string } type ‘pipe’ | ‘inherit’ 在当前进程中执行 | 在新的进程中执行
- * @return { code: 0 | 1, result: string }
- * @desc 📝 基于node封装的js调用shell命令
- * @example 
-  import { jsShell } from './lazy-js-utils'
- 
-  const { code, result } = jsShell('ls') // 默认在父进程执行，如果不需要在当前终端显示，可使用'pipe'
-  if(code === 1 ){
-    // something error
-  }else {
-    // execute successfully
-    const term1 = data?.split('\n').map(item => item).join(' ')
-    jsShell(`gum choose  ${term1}`)
-  }
- */
-```
-
 ## fileCopy
 
-🧿 拷贝文件夹及其文件
+将文件拷贝到另一个目录
+EN: Copy given files to a destination directory via a shell command wrapper.
 
-```typescript
+```ts
 /**
- * @func fileCopy
- * @return { code: 0 | 1, result: string } 
- * @desc 📝 拷贝文件夹及其文件
- * @example 
-  import { fileCopy } from './lazy-js-utils'
-
-  // 将public和assets下的资源拷贝到dist目录下
-  const resource = ['../public','../assets']
-  const { code, result } = fileCopy(resource, '../dist')
-  if(code === 0){
-    // success
-  }else {
-    // error
-    throw result
-  }
- */
-```
-
-## transformArgv
-
-🧿 处理命令行参数
-
-```typescript
-/**
- * @func transformArgv
- * @desc 📝 处理命令行参数
- * @return { Object }
- * @example 
-  import { transformArgv } from './lazy-js-utils'
-
-  // script: build --minify --mode=production --type=es5
-  const args = transformArgv() // {minify: true, mode: 'production', type: 'es5'}
+ * 将文件拷贝到另一个目录
+ * @param urls 需要被拷贝的文件路径
+ * @param destination 目录
+ * @returns IShellMessage
+ * @description EN: Copy given files to a destination directory via a shell command wrapper.
  */
 ```
 
 ## getExportBundle
 
-🧿 返回 npm 打包文件
+获取npm包导出的文件内容
+EN: Read the exported module file content for an installed npm package by resolving its package.json `module` or `main` field.
 
-```typescript
+```ts
 /**
-* @func getExportBundle
-* @return { string }
-* @desc 📝 返回npm打包文件
-* @example 
-  import { getExportBundle } from './lazy-js-utils'
-
-  console.log(getExportBundle('vitest')) // 读取node_modules/vitest/package.json的module字段如果没有才会读取main字段, 返回打包文件的内容
-*/
+ * 获取npm包导出的文件内容
+ * @param { string } url npm包名
+ * @returns
+ * @description EN: Read the exported module file content for an installed npm package by resolving its package.json `module` or `main` field.
+ */
 ```
 
 ## getPkg
 
-🧿 获取 package.json 的 Object 对象
+获取当前package.json 对象
+EN: Read and parse a package.json file at the provided path (defaults to ./package.json) and return its JSON object.
 
-```typescript
+```ts
 /**
- * @func getPkg
- * @param { string } url 路径
- * @return { Object }
- * @desc 📝 获取package.json的Object 对象
- * @example 
-  import { getPkg } from './lazy-js-utils'
-
-  const pkg1 = await getPkg() // 默认获取当前cwd下的package.json
-
-  const pkg2 = await getPkg('../playground/package.json') // 获取playground/package.json
-*/
-```
-
-## writeFile
-
-🧿 快速修改文件内容,支持多个文件同时修改
-
-```typescript
-/**
- * @func writeFile
- * @param { string | string[] } filePath 文件路径
- * @param { (content: string, index: number) => string } callback 传入文件string类型的内容,可以修改后返回新的内容
- * @param { BufferEncoding } encoding 默认utf-8
- * @return { void }
- * @desc 📝 快速修改文件内容,支持多个文件同时修改
- * @example 
-  import { writeFile } from './lazy-js-utils'
-
-  writeFile('./a.js', (content) => {
-    return content.replace('a', 'b')
-  })
+ * 获取当前package.json 对象
+ * @param { string } url 路径 默认 ./package.json
+ * @returns 返回json格式package.json
+ * @description EN: Read and parse a package.json file at the provided path (defaults to ./package.json) and return its JSON object.
  */
 ```
 
-## withTaskName
+## getPkgTool
 
-🧿 针对 gulpfile.js 中的 task 添加名称
+获取当前包管理器 ‘yarn’ | 'pnpm' | 'bun' | 'npm'
+EN: Determine the project's package manager (yarn|pnpm|bun|npm) by reading package.json or lockfiles.
 
-```typescript
+```ts
 /**
- * @func withTaskName
- * @param { string } taskName 任务名称
- * @param { async () => void } asyncFunction 异步任务函数
- * @return { void }
- * @desc 📝 针对gulpfile.js中的task添加名称
- * @example 
-  import { withTaskName } from './lazy-js-utils'
-  import { series } from 'gulp'
-
-  export default series(
-    withTaskName('clean', async () => run('rm -rf dist')),
-    withTaskName('buildPackages', async () => run('pnpm run --filter "./packages/*" --parallel build')),
-  )
+ * 获取当前包管理器 ‘yarn’ | 'pnpm' | 'bun' | 'npm'
+ * @returns 返回当前package环境 ‘yarn’ | 'pnpm' | 'bun' | 'npm'
+ * @description EN: Determine the project's package manager (yarn|pnpm|bun|npm) by reading package.json or lockfiles.
  */
 ```
 
-## useNodeWorker
+## jsShell
 
-🧿 使用 node worker 父进程
+执行 shell 命令的工具函数，支持单个或多个命令的执行。
+EN: Utility to execute shell commands (single or multiple). Returns promise(s) with execution results.
 
-```typescript
+```ts
 /**
- * @func useNodeWorker
- * @param { string } url worker文件路径
- * @param { any } data 传递给worker的数据
- * @return { Promise<any> }
- * @desc 📝 node worker封装
- * @example 
-  import { useNodeWorker } from './lazy-js-utils'
+ * 执行 shell 命令的工具函数，支持单个或多个命令的执行。
+ * @description EN: Utility to execute shell commands (single or multiple). Returns promise(s) with execution results.
+ *
+ * @template T - 指令类型，可以是字符串或字符串数组。
+ * @param {string | string[]} commander - 要执行的命令或命令数组。
+ * @param {Options | Options['stdio']} [options] - 配置选项或 stdio 配置。
+ * @param {string[]} [options.args] - 传递给命令的参数数组。
+ * @param {StdioOptions} [options.stdio] - 子进程的 stdio 配置，默认为 'pipe'。
+ * @param {boolean} [options.errorExit=true] - 是否在命令失败时退出进程。
+ * @param {boolean} [options.isLog=false] - 是否在控制台输出日志。
+ * @param {string} [options.cwd] - 子进程的工作目录。
+ * @param {SpawnOptions} [options.options] - 额外的子进程配置选项。
+ * @returns {Promise<IShellMessage | IShellMessage[]>} - 返回一个 Promise，解析为命令执行结果或结果数组。
+ *
+ * @throws {Error} - 如果命令执行失败且 `errorExit` 为 true，则抛出错误。
+ *
+ * @example
+ * // 执行单个命令
+ * jsShell('ls', { isLog: true })
+ *   .then(result => console.log(result))
+ *   .catch(error => console.error(error));
+ *
+ * @example
+ * // 执行多个命令
+ * jsShell(['ls', 'pwd'], { isLog: true })
+ *   .then(results => console.log(results))
+ *   .catch(error => console.error(error));
+ */
+```
 
-  useNodeWorker（'./worker.js', {a: 1}.then(res => console.log(res)) // {a: 5}
+## transformArgv
+EN: Parse process.argv into a key/value object where `--flag` without `=` yields true.
+
+```ts
+/**
+ *
+ * @returns 处理argv --flag如果未设置值默认为true
+ * @description EN: Parse process.argv into a key/value object where `--flag` without `=` yields true.
  */
 ```
 
 ## useProcressNodeWorker
 
-🧿 使用 node worker 子进程
+params: string[]
+EN: Run shell-like commands inside a Node Worker thread using the bundled worker script; accepts a payload or a command string.
 
-```typescript
+```ts
 /**
- * @func useProcressNodeWorker
- * @param { (data: any) => any } callback 回调函数
- * @return { void }
- * @desc 📝 node worker封装
- * @example 
-  import { useProcressNodeWorker } from './lazy-js-utils'
+ * @param { string | NodeWorkerPayload } payload 字符串 ｜ {
+  params: string[]
+  stdio?: 'inherit' | 'pipe'
+}
+ * @param { string } [url] 自定义worker路径
+ * @returns
+ * @description EN: Run shell-like commands inside a Node Worker thread using the bundled worker script; accepts a payload or a command string.
+ */
+```
 
-  useProcressNodeWorker((data)=>{
-   console.log(data) // {a:1}
-  data.a = data.a * 5
-  return data
-  }）
+## withTaskName
+
+处理gulp任务
+EN: Attach a displayName property to a function so tools like Gulp can show the task name.
+
+```ts
+/**
+ * 处理gulp任务
+ * @param name 任务名
+ * @param fn 任务函数
+ * @returns
+ * @description EN: Attach a displayName property to a function so tools like Gulp can show the task name.
+ */
+```
+
+## writeFile
+
+重写文件
+EN: Overwrite files by reading their content, transforming it via callback, and writing back the result.
+
+```ts
+/**
+ * 重写文件
+ * @param { string } paths 路径
+ * @param { (content: string, index: number) => string } callback 回调接收文件字符串将返回的内容重新写入该文件
+ * @param { string } [encoding] 默认 'utf-8'
+ * @description EN: Overwrite files by reading their content, transforming it via callback, and writing back the result.
+ */
+```
+
+## hasPkg
+
+判断是否存在package.json
+EN: Check whether a package.json exists at the given root path.
+
+```ts
+/**
+ * 判断是否存在package.json
+ * @param { string } rootPath 绝对路径
+ * @returns boolean
+ * @description EN: Check whether a package.json exists at the given root path.
+ */
+```
+
+## isInstallPkg
+
+_暂无文档注释，欢迎补充。_
+
+## isExist
+
+判断文件是否存在
+EN: Return true if the given path exists on disk, false otherwise.
+
+```ts
+/**
+ * 判断文件是否存在
+ * @param url
+ * @returns
+ * @description EN: Return true if the given path exists on disk, false otherwise.
+ */
+```
+
+## isGo
+
+判断是否是在go环境
+EN: Detect whether the current project is a Go project by checking for go files or go.mod.
+
+```ts
+/**
+ * 判断是否是在go环境
+ * @returns
+ * @description EN: Detect whether the current project is a Go project by checking for go files or go.mod.
+ */
+```
+
+## isRust
+
+判断是否是rust环境
+EN: Detect whether the current project is a Rust project by checking for Cargo.toml.
+
+```ts
+/**
+ * 判断是否是rust环境
+ * @description EN: Detect whether the current project is a Rust project by checking for Cargo.toml.
+ */
+```
+
+## isWritable
+
+同步地测试用户对 path 指定的文件或目录的权限
+EN: Return true if the given file or directory is writable by the current user.
+
+```ts
+/**
+ * 同步地测试用户对 path 指定的文件或目录的权限
+ * @param { string } filename 文件或目录路径
+ * @returns
+ * @description EN: Return true if the given file or directory is writable by the current user.
+ */
+```
+
+## isPkg
+
+判断路径下是否有package.jsons
+EN: Determine whether a package.json exists in the given path (defaults to process.cwd()).
+
+```ts
+/**
+ * 判断路径下是否有package.jsons
+ * @param { string } rootPath 默认 process.cwd()
+ * @description EN: Determine whether a package.json exists in the given path (defaults to process.cwd()).
  */
 ```
